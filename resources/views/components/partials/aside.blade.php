@@ -27,7 +27,8 @@
          {{-- overflow-y-scroll hover:overflow-y-auto --}}
          <ul class="p-2">
              <li>
-                 <a href="/" class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600"
+                 <a href="/"
+                     class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 @if (request()->routeIs('dashboard')) bg-sky-800 @endif"
                      :class="{ 'justify-center': !isSidebarOpen }">
                      <span>
                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -39,7 +40,7 @@
                      <span :class="{ 'lg:hidden': !isSidebarOpen }">Inicio</span>
                  </a>
                  <a href="{{ route('profile.show') }}"
-                     class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 @if (request()->routeIs('profile.show')) bg-gray-700 @endif"
+                     class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 @if (request()->routeIs('profile.show')) bg-sky-800 @endif"
                      :class="{ 'justify-center': !isSidebarOpen }">
                      <span>
                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -63,8 +64,8 @@
                      <span :class="{ 'lg:hidden': !isSidebarOpen }">SISTEMA</span>
                  </h1>
 
-                 <a class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 "
-                     :class="{ 'justify-center': !isSidebarOpen }">
+                 <a class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 @if (request()->routeIs('usuario.index')) bg-sky-800 @endif "
+                     :class="{ 'justify-center': !isSidebarOpen }" href="{{ route('usuario.index') }}">
                      <span>
                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor">
@@ -74,8 +75,8 @@
                      </span>
                      <span :class="{ 'lg:hidden': !isSidebarOpen }">Usuarios</span>
                  </a>
-                 <a class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 "
-                     :class="{ 'justify-center': !isSidebarOpen }">
+                 <a class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 @if (request()->routeIs('roles.index')) bg-sky-800 @endif"
+                     :class="{ 'justify-center': !isSidebarOpen }" href="{{ route('roles.index') }}">
                      <span>
                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor">
@@ -85,8 +86,8 @@
                      </span>
                      <span :class="{ 'lg:hidden': !isSidebarOpen }">Roles</span>
                  </a>
-                 <a class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 "
-                     :class="{ 'justify-center': !isSidebarOpen }">
+                 <a class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 @if (request()->routeIs('bitacora.index')) bg-sky-800 @endif "
+                     :class="{ 'justify-center': !isSidebarOpen }" href="{{ route('bitacora.index') }}">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor">
                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
