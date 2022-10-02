@@ -4,7 +4,7 @@
         <div class="flex items-center space-x-3">
             <a href="/" class="p-2 text-xl font-semibold tracking-wider uppercase lg:hidden">Veterinaria</a>
             <!-- Toggle sidebar button -->
-            <button @click="toggleSidbarMenu()" class="p-2 rounded-md focus:outline-none focus:ring lg:hidden md:hidden">
+            <button @click="toggleSidbarMenu()" class="p-2 rounded-md focus:outline-none focus:ring">
                 <svg class="w-5 h-5 text-gray-600"
                     :class="{ 'transform transition-transform -rotate-180': isSidebarOpen }"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
