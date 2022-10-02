@@ -54,15 +54,17 @@
 
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
         <script>
+            window.innerWidth <= 768 ? open = false : open = true;
             const setup = () => {
                 return {
                     loading: true,
-                    isSidebarOpen: true,
+                    isSidebarOpen: open,
                     toggleSidbarMenu() {
                         this.isSidebarOpen = !this.isSidebarOpen
                     },
                     isSettingsPanelOpen: false,
                     isSearchBoxOpen: false,
+
                 }
             }
         </script>
