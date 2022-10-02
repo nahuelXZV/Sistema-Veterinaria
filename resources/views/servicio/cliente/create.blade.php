@@ -1,12 +1,12 @@
 <x-plantilla>
     <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-4 ">
-        {{ __('Usuarios') }}
+        {{ __('Clientes') }}
     </h2>
 
     <x-card>
         <div class="flex items-center justify-center px-6 py-4">
             <div class="mx-auto w-full ">
-                <form method="POST" action="{{ route('usuario.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('cliente.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="-mx-3 flex flex-wrap">
                         <div class="w-full px-3 sm:w-1/2">
@@ -14,9 +14,9 @@
                                 <x-label-input>
                                     Nombre Completo*
                                 </x-label-input>
-                                <input type="text" name="name" placeholder="Nombre completo"
+                                <input type="text" name="nombre" placeholder="Nombre completo"
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                                @error('name')
+                                @error('nombre')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -24,11 +24,11 @@
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
                                 <x-label-input>
-                                    Correo Electrónico*
+                                    Teléfono*
                                 </x-label-input>
-                                <input type="text" name="email" placeholder="Correo electrónico"
+                                <input type="text" name="telefono" placeholder="Teléfono"
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                                @error('email')
+                                @error('telefono')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -39,11 +39,11 @@
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
                                 <x-label-input>
-                                    Contraseña*
+                                    Dirrección*
                                 </x-label-input>
-                                <input type="password" name="password" placeholder="Contraseña"
+                                <input type="text" name="direccion" placeholder="Dirrección"
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                                @error('password')
+                                @error('direccion')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -51,27 +51,30 @@
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
                                 <x-label-input>
-                                    Cargo*
+                                    Correo*
                                 </x-label-input>
-                                <select
-                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    name="role" id="role">
-                                    <option value="">Seleccione un role</option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('role')
+                                <input type="text" name="correo" placeholder="Correo"
+                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                                @error('correo')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                     </div>
 
+                    <div class="-mx-3 flex flex-wrap">
+                        <div class="w-full px-3">
+                            <x-label-input>
+                                Otros
+                            </x-label-input>
+                            <textarea name="otros" placeholder="Otros....." rows="3"
+                                class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"></textarea>
+                        </div>
+                    </div>
 
                     <div class="-mx-3 px-3 py-4 flex items-center">
                         <div class="flex items-center">
-                            <x-button-link route="usuario.index">
+                            <x-button-link route="cliente.index">
                                 {{ __('Volver') }}
                             </x-button-link>
                             <x-jet-button>
