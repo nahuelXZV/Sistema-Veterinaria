@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->double('monto_total');
             $table->text('otros')->nullable();
+            $table->foreignId('proveedor_id')->constrained('proveedors')->onDelete('cascade');
             $table->timestamps();
         });
     }

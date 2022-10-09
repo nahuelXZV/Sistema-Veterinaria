@@ -14,4 +14,14 @@ class DetalleCompra extends Model
         'nota_compra_id',
         'producto_id',
     ];
+
+    public function nota_compra()
+    {
+        return $this->belongsTo(NotaCompra::class);
+    }
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class);
+    }
 }
