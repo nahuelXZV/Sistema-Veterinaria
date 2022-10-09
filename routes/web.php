@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CompraVenta\NotaCompraController;
+use App\Http\Controllers\CompraVenta\NotaVentaController;
+use App\Http\Controllers\CompraVenta\ProductoController;
 use App\Http\Controllers\Servicio\ClienteController;
 use App\Http\Controllers\Servicio\MascotaController;
 use App\Http\Controllers\Sistema\BitacoraController;
@@ -65,5 +68,36 @@ Route::middleware([
         Route::get('/show/{mascota}', [MascotaController::class, 'show'])->name('mascota.show');
         Route::put('/{mascota}', [MascotaController::class, 'update'])->name('mascota.update');
         Route::delete('/{mascota}', [MascotaController::class, 'destroy'])->name('mascota.delete');
+    });
+
+    // Modulo compra y venta
+    Route::group(['prefix' => 'producto'], function () {
+        Route::get('/', [ProductoController::class, 'index'])->name('producto.index');
+        Route::get('/create', [ProductoController::class, 'create'])->name('producto.create');
+        Route::post('/', [ProductoController::class, 'store'])->name('producto.store');
+        Route::get('/edit/{producto}', [ProductoController::class, 'edit'])->name('producto.edit');
+        Route::get('/show/{producto}', [ProductoController::class, 'show'])->name('producto.show');
+        Route::put('/{producto}', [ProductoController::class, 'update'])->name('producto.update');
+        Route::delete('/{producto}', [ProductoController::class, 'destroy'])->name('producto.delete');
+    });
+
+    Route::group(['prefix' => 'nota_compra'], function () {
+        Route::get('/', [NotaCompraController::class, 'index'])->name('nota_compra.index');
+        Route::get('/create', [NotaCompraController::class, 'create'])->name('nota_compra.create');
+        Route::post('/', [NotaCompraController::class, 'store'])->name('nota_compra.store');
+        Route::get('/edit/{nota_compra}', [NotaCompraController::class, 'edit'])->name('nota_compra.edit');
+        Route::get('/show/{nota_compra}', [NotaCompraController::class, 'show'])->name('nota_compra.show');
+        Route::put('/{nota_compra}', [NotaCompraController::class, 'update'])->name('nota_compra.update');
+        Route::delete('/{nota_compra}', [NotaCompraController::class, 'destroy'])->name('nota_compra.delete');
+    });
+
+    Route::group(['prefix' => 'nota_venta'], function () {
+        Route::get('/', [NotaVentaController::class, 'index'])->name('nota_venta.index');
+        Route::get('/create', [NotaVentaController::class, 'create'])->name('nota_venta.create');
+        Route::post('/', [NotaVentaController::class, 'store'])->name('nota_venta.store');
+        Route::get('/edit/{nota_venta}', [NotaVentaController::class, 'edit'])->name('nota_venta.edit');
+        Route::get('/show/{nota_venta}', [NotaVentaController::class, 'show'])->name('nota_venta.show');
+        Route::put('/{nota_venta}', [NotaVentaController::class, 'update'])->name('nota_venta.update');
+        Route::delete('/{nota_venta}', [NotaVentaController::class, 'destroy'])->name('nota_venta.delete');
     });
 });
