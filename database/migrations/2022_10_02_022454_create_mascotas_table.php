@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('mascotas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->integer('edad');
             $table->string('sexo');
             $table->string('especie');
             $table->string('raza');

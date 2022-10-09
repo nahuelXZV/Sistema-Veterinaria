@@ -5,10 +5,10 @@
     <x-card>
         <div class="px-6 py-4 flex items-center">
             <div class="flex items-center mr-2">
-
-                <x-button-link route="roles.create">
+                <a href="{{ route('roles.create') }}"
+                    class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                     {{ __('Nuevo') }}
-                </x-button-link>
+                </a>
             </div>
 
             <x-jet-input type="text" class="flex-1 rounded-md shadow-sm" wire:model.lazy="attribute"
@@ -32,23 +32,26 @@
                 <tbody class="divide-y divide-gray-200">
                     @foreach ($roles as $role)
                         <tr>
-                            <td class="px-6 py-4 text-sm text-gray-900 font-bold">
+                            <td class="px-6 py-2 text-sm text-gray-900 font-bold">
                                 {{ $role->id }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $role->name }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap flex">
-                                <x-button-link-post route='roles.edit' id='{{ $role->id }}'>
+                            <td class="px-6 py-2 whitespace-nowrap flex">
+                                <a href="{{ route('roles.edit', $role->id) }}"
+                                    class='mr-1 px-2 py-1 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                                     <x-edit />
-                                </x-button-link-post>
+                                </a>
                                 <form action="{{ route('roles.delete', $role->id) }}" method="POST"
-                                    style="display: inline-block;" onsubmit="return confirm('¿Está seguro?')">
+                                    class='px-2 py-1 inline-flex items-center  bg-red-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring focus:ring-red-300 disabled:opacity-25 transition'
+                                    onsubmit="return confirm('¿Está seguro?')">
                                     @csrf
                                     @method('DELETE')
-                                    <x-button-delete>
+                                    <button type="submit"
+                                        class='inline-flex items-center bg-red-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring focus:ring-red-300 disabled:opacity-25 transition'>
                                         <x-delete />
-                                    </x-button-delete>
+                                    </button>
                                 </form>
                             </td>
                         </tr>

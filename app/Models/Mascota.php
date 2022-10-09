@@ -10,7 +10,6 @@ class Mascota extends Model
     use HasFactory;
     protected $fillable = [
         'nombre',
-        'edad',
         'sexo',
         'especie',
         'raza',

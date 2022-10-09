@@ -71,9 +71,10 @@
 
                     <div class="-mx-3 px-3 py-4 flex items-center">
                         <div class="flex items-center">
-                            <x-button-link route="usuario.index">
+                            <a href="{{ route('usuario.index') }}"
+                                class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                                 {{ __('Volver') }}
-                            </x-button-link>
+                            </a>
                             <x-jet-button>
                                 Guardar
                             </x-jet-button>

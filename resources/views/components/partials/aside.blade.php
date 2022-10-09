@@ -39,18 +39,7 @@
                      </span>
                      <span :class="{ 'lg:hidden': !isSidebarOpen }">Inicio</span>
                  </a>
-                 <a href="{{ route('profile.show') }}"
-                     class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 @if (request()->routeIs('profile.show')) bg-sky-800 @endif"
-                     :class="{ 'justify-center': !isSidebarOpen }">
-                     <span>
-                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor">
-                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                 d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
-                         </svg>
-                     </span>
-                     <span :class="{ 'lg:hidden': !isSidebarOpen }">Perfil</span>
-                 </a>
+
 
                  <!-- MODULO SISTEMA... -->
                  <h1 class="flex items-center space-x-2 font-bold" :class="{ 'justify-center': !isSidebarOpen }">
@@ -133,26 +122,5 @@
                  <span :class="{ 'lg:hidden': !isSidebarOpen }">Mascotas</span>
              </a>
          </ul>
-         <!-- Sidebar footer -->
-         <div class="flex-shrink-0 p-2 border-t max-h-10 text-gray-900">
-             <form method="POST" action="{{ route('logout') }}">
-                 @csrf
-
-                 <button href="{{ route('logout') }}"
-                     onclick="event.preventDefault();
-                   this.closest('form').submit();"
-                     type="button"
-                     class="flex items-center justify-center w-full space-x-1 font-medium tracking-wider bg-white border rounded-md focus:outline-none focus:ring">
-                     <span>
-                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor">
-                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                 d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                         </svg>
-                     </span>
-                     <span :class="{ 'lg:hidden': !isSidebarOpen }"> Cerrar Sesión </span>
-                 </button>
-             </form>
-         </div>
      </nav>
  </aside>

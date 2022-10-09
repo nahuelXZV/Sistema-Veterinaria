@@ -34,22 +34,22 @@
                 <tbody class="divide-y divide-gray-200">
                     @foreach ($bitacoras as $bitacora)
                         <tr>
-                            <td class="px-6 py-4 text-sm text-gray-900 font-bold">
+                            <td class="px-6 py-2 text-sm text-gray-900 font-bold">
                                 {{ $bitacora->id }}
                             </td>
-                            <td class="px-6 py-4 text-sm text-gray-900 font-bold">
+                            <td class="px-6 py-2 text-sm text-gray-900 font-bold">
                                 {{ $bitacora->user->name }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $bitacora->accion }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $bitacora->tabla }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $bitacora->ip }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $bitacora->id_registro }}
                             </td>
                         </tr>
