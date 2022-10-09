@@ -5,12 +5,11 @@
     <x-card>
         <div class="px-6 py-4 flex items-center">
             {{-- 3 botones juntos --}}
-
             <div class="flex items-center mr-2">
-
-                <x-button-link route="usuario.create">
+                <a href="{{ route('usuario.create') }}"
+                    class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                     {{ __('Nuevo') }}
-                </x-button-link>
+                </a>
             </div>
 
             <x-jet-input type="text" class="flex-1 rounded-md shadow-sm" wire:model.lazy="attribute"
@@ -53,16 +52,19 @@
                                 {{ $user->getRoleNames()->implode(' ') }}
                             </td>
                             <td class="px-6 py-2 whitespace-nowrap flex">
-                                <x-button-link-post route='usuario.edit' id='{{ $user->id }}'>
+                                <a href="{{ route('usuario.edit', $user->id) }}"
+                                    class='mr-1 px-2 py-1 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                                     <x-edit />
-                                </x-button-link-post>
+                                </a>
                                 <form action="{{ route('usuario.delete', $user->id) }}" method="POST"
-                                    style="display: inline-block;" onsubmit="return confirm('¿Está seguro?')">
+                                    class='px-2 py-1 inline-flex items-center  bg-red-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring focus:ring-red-300 disabled:opacity-25 transition'
+                                    onsubmit="return confirm('¿Está seguro?')">
                                     @csrf
                                     @method('DELETE')
-                                    <x-button-delete>
+                                    <button type="submit"
+                                        class='inline-flex items-center bg-red-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring focus:ring-red-300 disabled:opacity-25 transition'>
                                         <x-delete />
-                                    </x-button-delete>
+                                    </button>
                                 </form>
                             </td>
                         </tr>

@@ -6,14 +6,16 @@
 
     <x-card>
         {{-- Botones de la cabezera --}}
-        <div class="px-6 py-4 flex items-center">
+        <div class="px-5 py-3 flex items-center">
             <div class="flex items-center mr-2">
-                <x-button-link-post route="mascota.index" id="">
+                <a href="{{ route('mascota.index') }}"
+                    class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                     {{ __('Volver') }}
-                </x-button-link-post>
-                <x-button-link-post route="mascota.edit" id="{{ $mascota->id }}">
+                </a>
+                <a href="{{ route('mascota.edit', $mascota->id) }}"
+                    class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                     {{ __('Editar') }}
-                </x-button-link-post>
+                </a>
             </div>
         </div>
 
@@ -69,9 +71,39 @@
 
     <x-card>
         <h1 class="text-2xl font-bold text-leaf m-4 lg:text-center">Historial Clinico</h1>
-        <div class="mb-32"></div>
 
+        <ul class="nav nav-pills flex flex-col md:flex-row flex-wrap list-none pl-0 mb-4 mt-4" id="pills-tab3"
+            role="tablist">
+            <li class="nav-item" role="presentation">
+                <button type="button"
+                    class="active nav-link block font-medium text-xs leading-tight uppercase rounded px-6 py-3 my-2 md:mr-2 focus:outline-none focus:ring-0 "
+                    id="pills-home-tab3" data-bs-toggle="pill" data-bs-target="#pills-home" role="tab"
+                    aria-controls="pills-home" aria-selected="true">
+                    Consultas realizadas
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button type="button"
+                    class="nav-link block font-medium text-xs leading-tight uppercase rounded px-6 py-3 my-2 md:mr-2 focus:outline-none focus:ring-0 "
+                    id="pills-profile-tab3" data-bs-toggle="pill" data-bs-target="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="false">
+                    Control de vacunas
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent3">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab3">
+                {{-- @livewire('paciente.historial.lw-index', ['id' => $id]) --}}
+                <div class="px-6 py-4 h-32">
+                    Consultas realizadas
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab3">
+                {{-- @livewire('paciente.historial.lw-realizadas', ['id' => $id]) --}}
+                <div class="px-6 py-4 h-32">
+                    Control de vacunas
+                </div>
+            </div>
+        </div>
     </x-card>
-
-
 </x-plantilla>
