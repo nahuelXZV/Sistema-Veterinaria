@@ -1,6 +1,6 @@
 <div>
     <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-4 ">
-        {{ __('Nota de Compra') }}
+        {{ __('Nota de Venta') }}
     </h2>
 
     {{-- Header Nota --}}
@@ -11,15 +11,13 @@
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
                             <x-label-input>
-                                Proveedor*
+                                Nombre Cliente
                             </x-label-input>
-                            <select class="w-full" wire:model.defer='header.proveedor_id'>
-                                <option value="">Seleccione un proveedor</option>
-                                @foreach ($proveedores as $proveedor)
-                                    <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
-                                @endforeach
-                            </select>
-                            @error('header.proveedor_id')
+                            <input type="text" name="" placeholder="Nombre Cliente"
+                                wire:model.defer='header.nombre_cliente' readonly
+                                class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+
+                            @error('header.nombre_cliente')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
                         </div>
@@ -55,12 +53,12 @@
             <h1 class="text-2xl font-bold text-leaf m-6 lg:text-center">Productos</h1>
 
             <div class="-mx-3 flex flex-wrap">
-                <div class="w-full px-3 sm:w-2/5">
+                <div class="w-full px-3 sm:w-2/6">
                     <div class="mb-5">
                         <x-label-input>
                             Producto*
                         </x-label-input>
-                        <select class="w-full" wire:model.defer='producto.producto_id'>
+                        <select class="w-full" wire:model='producto.producto_id'>
                             <option value="">Seleccione un producto</option>
                             @foreach ($productos as $producto)
                                 <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
@@ -71,7 +69,17 @@
                         @enderror
                     </div>
                 </div>
-                <div class="w-full px-3 sm:w-1/5">
+                <div class="w-full px-3 sm:w-1/6">
+                    <div class="mb-5">
+                        <x-label-input>
+                            En Stock
+                        </x-label-input>
+                        <input type="number" name="" placeholder="0" wire:model.defer='producto.max_cantidad'
+                            readonly
+                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    </div>
+                </div>
+                <div class="w-full px-3 sm:w-1/6">
                     <div class="mb-5">
                         <x-label-input>
                             Cantidad*
@@ -83,7 +91,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="w-full px-3 sm:w-1/5">
+                <div class="w-full px-3 sm:w-1/6">
                     <div class="mb-5">
                         <x-label-input>
                             Precio*
@@ -96,7 +104,7 @@
                     </div>
                 </div>
                 {{-- button the add --}}
-                <div class="w-full px-3 text-center mb-4 sm:w-1/5">
+                <div class="w-full px-3 text-center mb-4 sm:w-1/6">
                     <div class="mb-5">
                         <x-label-input>
                             &nbsp;
@@ -165,7 +173,7 @@
 
             <div class="-mx-3 px-3 py-4 flex items-center mb-8">
                 <div class="flex items-center">
-                    <a href="{{ route('nota_compra.index') }}"
+                    <a href="{{ route('nota_venta.index') }}"
                         class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                         {{ __('Volver') }}
                     </a>

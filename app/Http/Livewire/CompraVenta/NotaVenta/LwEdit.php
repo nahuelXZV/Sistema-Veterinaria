@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\CompraVenta\NotaCompra;
+namespace App\Http\Livewire\CompraVenta\NotaVenta;
 
 use App\Models\Bitacora;
-use App\Models\DetalleCompra;
+use App\Models\DetalleVenta;
 use App\Models\NotaCompra;
+use App\Models\NotaVenta;
 use App\Models\Producto;
 use Livewire\Component;
 
@@ -15,15 +16,16 @@ class LwEdit extends Component
     public $producto = [];
     public $lista_productos = [];
     public $lista_productos_id = [];
-    public $nota_compra;
+    public $nota_venta;
 
-    public function mount($nota_compra)
+    public function mount($nota_venta)
     {
-        $this->nota_compra = NotaCompra::find($nota_compra->id);
-        $this->header['monto_total'] = $this->nota_compra->monto_total;
-        $this->header['otros'] = $this->nota_compra->otros;
+        $this->nota_venta = NotaVenta::find($nota_venta->id);
+        $this->header['monto_total'] = $this->nota_venta->monto_total;
+        $this->header['otros'] = $this->nota_venta->otros;
+        $this->header['nombre_cliente'] = $this->nota_venta->nombre_cliente;
         // convertir a array los productos de la nota de compra
-        foreach ($this->nota_compra->detalle_nota_compras as $key => $value) {
+        foreach ($this->nota_venta->detalle_nota_ventas as $key => $value) {
             array_push($this->lista_productos, [
                 'id_detalle' => $value->id,
                 'id' => $value->producto->id,
@@ -33,38 +35,46 @@ class LwEdit extends Component
             ]);
             array_push($this->lista_productos_id, $value->producto->id);
         }
+        $this->producto['producto_id'] = null;
+        $this->producto['max_cantidad'] = 0;
     }
 
     public function save()
     {
-        //crear el header
-        $this->nota_compra->update($this->header);
-        Bitacora::Bitacora('U', 'Nota de Compra', $this->nota_compra->id);
+        $this->validate([
+            'header.nombre_cliente' => 'required',
+            'header.monto_total' => 'required',
+        ], [
+            'header.nombre_cliente.required' => 'El campo nombre del cliente es obligatorio',
+            'header.monto_total.required' => 'El campo Monto Total es obligatorio',
+        ]);
 
-        //Eliminar los detalles anteriores
-        $detallesAnteriores = $this->nota_compra->detalle_nota_compras;
-        foreach ($detallesAnteriores as $key => $value) {
-            $prod = Producto::find($value->producto->id);
-            $prod->cantidad = $prod->cantidad - $value->cantidad;
+        //crear el header
+        $this->nota_venta->update($this->header);
+        Bitacora::Bitacora('U', 'Nota de Venta', $this->nota_venta->id);
+
+        // eliminar los detalles anteriores
+        foreach ($this->nota_venta->detalle_nota_ventas as $key => $value) {
+            $prod = Producto::find($value->producto_id);
+            $prod->cantidad = $prod->cantidad + $value->cantidad;
             $prod->save();
             $value->delete();
         }
 
-        //Crear los nuevos detalles
+        //crear los nuevos detalle
         foreach ($this->lista_productos as $key => $value) {
-            DetalleCompra::create([
-                'nota_compra_id' => $this->nota_compra->id,
+            DetalleVenta::create([
+                'nota_venta_id' => $this->nota_venta->id,
                 'producto_id' => $value['id'],
                 'cantidad' => $value['cantidad'],
                 'precio' => $value['precio'],
             ]);
-            // aumentando el stock
+            // disminuyendo el stock
             $prod = Producto::find($value['id']);
-            $prod->cantidad = $prod->cantidad + $value['cantidad'];
-            $prod->precio = ($prod->precio + $value['precio']) / 2;
+            $prod->cantidad = $prod->cantidad - $value['cantidad'];
             $prod->save();
         }
-        return redirect()->route('nota_compra.index');
+        return redirect()->route('nota_venta.index');
     }
 
     public function delLista($id)
@@ -82,11 +92,12 @@ class LwEdit extends Component
     {
         $this->validate([
             'producto.producto_id' => 'required',
-            'producto.cantidad' => 'required',
+            'producto.cantidad' => 'required|max:' . $this->producto['max_cantidad'],
             'producto.precio' => 'required',
         ], [
             'producto.producto_id.required' => 'El campo producto es obligatorio',
             'producto.cantidad.required' => 'El campo cantidad es obligatorio',
+            'producto.cantidad.max' => 'La cantidad no puede ser mayor a ' . $this->producto['max_cantidad'],
             'producto.precio.required' => 'El campo precio es obligatorio',
         ]);
         $prod = Producto::find($this->producto['producto_id']);
@@ -98,6 +109,8 @@ class LwEdit extends Component
         ]);
         array_push($this->lista_productos_id, $prod->id);
         $this->producto = [];
+        $this->producto['producto_id'] = null;
+        $this->producto['max_cantidad'] = null;
         $this->getTotal();
     }
 
@@ -109,10 +122,16 @@ class LwEdit extends Component
         }
         $this->header['monto_total'] = $total;
     }
-
     public function render()
     {
-        $productos = Producto::whereNotIn('id', $this->lista_productos_id)->get();
-        return view('livewire.compra-venta.nota-compra.lw-edit', compact('productos'));
+        if ($this->producto['producto_id'] != null) {
+            $prod = Producto::find($this->producto['producto_id']);
+            $this->producto['precio'] = $prod->precio;
+            $this->producto['max_cantidad'] = $prod->cantidad;
+        }
+        $productos = Producto::whereNotIn('id', $this->lista_productos_id)
+            ->where('cantidad', '>', 0)
+            ->get();
+        return view('livewire.compra-venta.nota-venta.lw-edit', compact('productos'));
     }
 }

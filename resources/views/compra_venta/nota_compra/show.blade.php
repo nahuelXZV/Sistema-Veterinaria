@@ -34,10 +34,10 @@
                     <div class="w-full px-3 sm:w-1/2">
                         <div class="mb-5">
                             <x-label-input>
-                                Monto Total
+                                Encargado
                             </x-label-input>
                             <input type="text" name="" placeholder="0" readonly
-                                value="{{ $nota->monto_total }}"
+                                value="{{ $nota->proveedor->encargado }}"
                                 class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                         </div>
                     </div>
@@ -79,6 +79,9 @@
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
                             Cantidad
                         </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
+                            Subtotal
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -99,8 +102,27 @@
                             <td class="px-6 py-2 text-sm">
                                 {{ $producto->cantidad }}
                             </td>
+                            <td class="px-6 py-2 text-sm">
+                                {{ $producto->precio * $producto->cantidad }}
+                            </td>
                         </tr>
                     @endforeach
+                    <tr>
+                        <td class="px-6 py-2 text-sm text-gray-900 font-bold">
+                        </td>
+                        <td class="px-6 py-2 text-sm text-gray-900 font-bold">
+                        </td>
+                        <td class="px-6 py-2 text-sm">
+                        </td>
+                        <td class="px-6 py-2 text-sm">
+                        </td>
+                        <td class="px-6 py-2 text-sm font-bold"">
+                            TOTAL
+                        </td>
+                        <td class="px-6 py-2 text-sm">
+                            {{ $nota->monto_total }} Bs.
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

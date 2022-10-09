@@ -45,6 +45,11 @@ class LwCreate extends Component
                 'cantidad' => $value['cantidad'],
                 'precio' => $value['precio'],
             ]);
+            // aumentando el stock
+            $prod = Producto::find($value['id']);
+            $prod->cantidad = $prod->cantidad + $value['cantidad'];
+            $prod->precio = ($prod->precio + $value['precio']) / 2;
+            $prod->save();
         }
         return redirect()->route('nota_compra.index');
     }
