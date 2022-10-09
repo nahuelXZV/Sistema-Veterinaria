@@ -32,13 +32,13 @@
                 <tbody class="divide-y divide-gray-200">
                     @foreach ($roles as $role)
                         <tr>
-                            <td class="px-6 py-4 text-sm text-gray-900 font-bold">
+                            <td class="px-6 py-2 text-sm text-gray-900 font-bold">
                                 {{ $role->id }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $role->name }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap flex">
+                            <td class="px-6 py-2 whitespace-nowrap flex">
                                 <x-button-link-post route='roles.edit' id='{{ $role->id }}'>
                                     <x-edit />
                                 </x-button-link-post>

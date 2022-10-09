@@ -48,7 +48,6 @@ class MascotaController extends Controller
             'raza' => $request->raza,
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'cliente_id' => $request->cliente_id,
-            'edad' => $edad,
         ]);
         Bitacora::Bitacora('C', 'Mascota', $mascota->id);
         return redirect()->route('mascota.index');
@@ -64,22 +63,17 @@ class MascotaController extends Controller
     {
         $request->validate([
             'nombre' => 'required',
-            'edad' => 'required|numeric',
             'sexo' => 'required',
             'especie' => 'required',
             'raza' => 'required',
             'fecha_nacimiento' => 'required|date',
-            'cliente_id' => 'required',
         ], [
             'nombre.required' => 'El campo nombre es obligatorio',
-            'edad.required' => 'El campo edad es obligatorio',
-            'edad.numeric' => 'El campo edad debe ser un número',
             'sexo.required' => 'El campo sexo es obligatorio',
             'especie.required' => 'El campo especie es obligatorio',
             'raza.required' => 'El campo raza es obligatorio',
             'fecha_nacimiento.required' => 'El campo fecha de nacimiento es obligatorio',
             'fecha_nacimiento.date' => 'El campo fecha de nacimiento debe ser una fecha',
-            'cliente_id.required' => 'El campo cliente es obligatorio',
         ]);
         $mascota = Mascota::find($id);
         $mascota->update($request->all());

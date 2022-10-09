@@ -40,22 +40,22 @@
                 <tbody class="divide-y divide-gray-200">
                     @foreach ($mascotas as $mascota)
                         <tr>
-                            <td class="px-6 py-4 text-sm text-gray-900 font-bold">
+                            <td class="px-6 py-2 text-sm text-gray-900 font-bold">
                                 {{ $mascota->id }}
                             </td>
-                            <td class="px-6 py-4 text-sm text-gray-900 font-bold">
+                            <td class="px-6 py-2 text-sm text-gray-900 font-bold">
                                 {{ $mascota->nombre }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $mascota->cliente }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $mascota->raza }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $mascota->especie }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap flex">
+                            <td class="px-6 py-2 whitespace-nowrap flex">
                                 <x-button-link-post route='mascota.show' id='{{ $mascota->id }}'>
                                     <x-show />
                                 </x-button-link-post>

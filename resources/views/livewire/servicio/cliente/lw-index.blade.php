@@ -40,22 +40,22 @@
                 <tbody class="divide-y divide-gray-200">
                     @foreach ($clientes as $cliente)
                         <tr>
-                            <td class="px-6 py-4 text-sm text-gray-900 font-bold">
+                            <td class="px-6 py-2 text-sm text-gray-900 font-bold">
                                 {{ $cliente->id }}
                             </td>
-                            <td class="px-6 py-4 text-sm text-gray-900 font-bold">
+                            <td class="px-6 py-2 text-sm text-gray-900 font-bold">
                                 {{ $cliente->nombre }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $cliente->telefono }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $cliente->direccion }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $cliente->correo }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap flex">
+                            <td class="px-6 py-2 whitespace-nowrap flex">
                                 <x-button-link-post route='cliente.edit' id='{{ $cliente->id }}'>
                                     <x-edit />
                                 </x-button-link-post>

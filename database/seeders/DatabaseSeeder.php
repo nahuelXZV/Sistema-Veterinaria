@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
+            ClienteSeeder::class,
+            MascotaSeeder::class,
         ]);
         User::create([
             'name' => 'Administrador',

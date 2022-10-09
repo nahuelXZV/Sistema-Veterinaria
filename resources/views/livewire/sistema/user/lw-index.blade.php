@@ -40,19 +40,19 @@
                 <tbody class="divide-y divide-gray-200">
                     @foreach ($users as $user)
                         <tr>
-                            <td class="px-6 py-4 text-sm text-gray-900 font-bold">
+                            <td class="px-6 py-2 text-sm text-gray-900 font-bold">
                                 {{ $user->id }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $user->name }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $user->email }}
                             </td>
-                            <td class="px-6 py-4 text-sm">
+                            <td class="px-6 py-2 text-sm">
                                 {{ $user->getRoleNames()->implode(' ') }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap flex">
+                            <td class="px-6 py-2 whitespace-nowrap flex">
                                 <x-button-link-post route='usuario.edit' id='{{ $user->id }}'>
                                     <x-edit />
                                 </x-button-link-post>
