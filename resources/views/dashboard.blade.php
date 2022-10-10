@@ -4,5 +4,4 @@
         {{ __('Dashboard') }}
     </h2>
     <img src="{{ asset('welcome.jpg') }}" class="w-full h-auto " alt="..." />
-
 </x-plantilla>
