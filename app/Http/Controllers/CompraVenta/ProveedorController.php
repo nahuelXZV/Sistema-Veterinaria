@@ -3,25 +3,23 @@
 namespace App\Http\Controllers\CompraVenta;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bitacora;
-use App\Models\Producto;
 use Illuminate\Http\Request;
 
-class ProductoController extends Controller
+class ProveedorController extends Controller
 {
     public function index()
     {
-        return view('compra_venta.producto.index');
+        /*         return view('compra_venta.producto.index'); */
     }
 
     public function create()
     {
-        return view('compra_venta.producto.create');
+        /*         return view('compra_venta.producto.create'); */
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        /*         $request->validate([
             'nombre' => 'required',
             'precio' => 'required',
             'tipo' => 'required',
@@ -39,18 +37,18 @@ class ProductoController extends Controller
 
         $producto = Producto::create($request->all());
         Bitacora::Bitacora('C', 'Producto', $producto->id);
-        return redirect()->route('producto.index');
+        return redirect()->route('producto.index'); */
     }
 
     public function edit($id)
     {
-        $producto = Producto::find($id);
-        return view('compra_venta.producto.edit', compact('producto'));
+        /*         $producto = Producto::find($id);
+        return view('compra_venta.producto.edit', compact('producto')); */
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        /*         $request->validate([
             'nombre' => 'required',
             'precio' => 'required|numeric',
             'tipo' => 'required',
@@ -69,20 +67,20 @@ class ProductoController extends Controller
         $producto = Producto::find($id);
         $producto->update($request->all());
         Bitacora::Bitacora('U', 'Producto', $producto->id);
-        return redirect()->route('producto.index');
+        return redirect()->route('producto.index'); */
     }
 
     public function destroy($id)
     {
-        $producto = Producto::find($id);
-        Bitacora::Bitacora('D', 'Producto', $producto->id);
+        /*         $producto = Producto::find($id);
         $producto->delete();
-        return redirect()->route('producto.index');
+        Bitacora::Bitacora('D', 'Producto', $producto->id);
+        return redirect()->route('producto.index'); */
     }
 
     public function show($id)
     {
-        $producto = Producto::find($id);
-        return view('compra_venta.producto.show', compact('producto'));
+        /*         $producto = Producto::find($id);
+        return view('compra_venta.producto.show', compact('producto')); */
     }
 }

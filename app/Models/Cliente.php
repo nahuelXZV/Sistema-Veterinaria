@@ -15,4 +15,10 @@ class Cliente extends Model
         'correo',
         'otros',
     ];
+
+    // relacion con mascotas
+    public function mascotas()
+    {
+        return $this->hasMany(Mascota::class);
+    }
 }

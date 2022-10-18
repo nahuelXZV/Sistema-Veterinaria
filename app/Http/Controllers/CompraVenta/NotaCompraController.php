@@ -28,8 +28,8 @@ class NotaCompraController extends Controller
     public function destroy($id)
     {
         $nota_compra = NotaCompra::find($id);
-        $nota_compra->delete();
         Bitacora::Bitacora('D', 'Nota de Compra', $nota_compra->id);
+        $nota_compra->delete();
         return redirect()->route('nota_compra.index');
     }
 

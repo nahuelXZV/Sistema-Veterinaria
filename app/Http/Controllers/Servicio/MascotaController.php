@@ -90,8 +90,8 @@ class MascotaController extends Controller
     public function destroy($id)
     {
         $mascota = Mascota::find($id);
-        $mascota->delete();
         Bitacora::Bitacora('D', 'Mascota', $mascota->id);
+        $mascota->delete();
         return redirect()->route('mascota.index');
     }
 }

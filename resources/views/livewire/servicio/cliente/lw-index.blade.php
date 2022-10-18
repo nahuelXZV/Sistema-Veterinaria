@@ -57,9 +57,9 @@
                                 {{ $cliente->correo }}
                             </td>
                             <td class="px-6 py-2 whitespace-nowrap flex">
-                                <a href="{{ route('cliente.edit', $cliente->id) }}"
-                                    class='mr-1 px-2 py-1 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
-                                    <x-edit />
+                                <a href="{{ route('cliente.show', $cliente->id) }}"
+                                    class='mr-1 px-2 py-1 inline-flex items-center  bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-600 active:bg-green-700 focus:outline-none focus:border-green-700 focus:ring focus:ring-green-300 disabled:opacity-25 transition'>
+                                    <x-show />
                                 </a>
                                 <form action="{{ route('cliente.delete', $cliente->id) }}" method="POST"
                                     class='inline-flex items-center  bg-red-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring focus:ring-red-300 disabled:opacity-25 transition'
