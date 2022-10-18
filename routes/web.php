@@ -37,7 +37,7 @@ Route::middleware([
     })->name('dashboard');
 
     // Modulo Sistema
-    Route::group(['prefix' => 'usuario'], function () {
+    Route::group(['prefix' => 'usuario', 'middleware' => ['can:usuario.index', 'auth']], function () {
         Route::get('/', [UserController::class, 'index'])->name('usuario.index');
         Route::get('/create', [UserController::class, 'create'])->name('usuario.create');
         Route::post('/', [UserController::class, 'store'])->name('usuario.store');
@@ -46,17 +46,17 @@ Route::middleware([
         Route::delete('/{usuario}', [UserController::class, 'destroy'])->name('usuario.delete');
     });
 
-    Route::group(['prefix' => 'roles'], function () {
+    Route::group(['prefix' => 'roles', 'middleware' => ['can:roles.index', 'auth']], function () {
         Route::get('/', [RoleController::class, 'index'])->name('roles.index');
         Route::get('/create', [RoleController::class, 'create'])->name('roles.create');
         Route::get('/edit/{rol}', [RoleController::class, 'edit'])->name('roles.edit');
         Route::delete('/{rol}', [RoleController::class, 'destroy'])->name('roles.delete');
     });
 
-    Route::get('/bitacora', [BitacoraController::class, 'index'])->name('bitacora.index');
+    Route::get('/bitacora', [BitacoraController::class, 'index'])->name('bitacora.index')->can('bitacora.index');
 
     // Modulo Servicio
-    Route::group(['prefix' => 'cliente'], function () {
+    Route::group(['prefix' => 'cliente', 'middleware' => ['can:cliente.index', 'auth']], function () {
         Route::get('/', [ClienteController::class, 'index'])->name('cliente.index');
         Route::get('/create', [ClienteController::class, 'create'])->name('cliente.create');
         Route::post('/', [ClienteController::class, 'store'])->name('cliente.store');
@@ -66,7 +66,7 @@ Route::middleware([
         Route::delete('/{cliente}', [ClienteController::class, 'destroy'])->name('cliente.delete');
     });
 
-    Route::group(['prefix' => 'mascota'], function () {
+    Route::group(['prefix' => 'mascota', 'middleware' => ['can:mascota.index', 'auth']], function () {
         Route::get('/', [MascotaController::class, 'index'])->name('mascota.index');
         Route::get('/create', [MascotaController::class, 'create'])->name('mascota.create');
         Route::post('/', [MascotaController::class, 'store'])->name('mascota.store');
@@ -76,7 +76,7 @@ Route::middleware([
         Route::delete('/{mascota}', [MascotaController::class, 'destroy'])->name('mascota.delete');
     });
 
-    Route::group(['prefix' => 'vacuna'], function () {
+    Route::group(['prefix' => 'vacuna', 'middleware' => ['can:vacuna.index', 'auth']], function () {
         Route::get('/', [VacunaController::class, 'index'])->name('vacuna.index');
         Route::get('/create', [VacunaController::class, 'create'])->name('vacuna.create');
         Route::post('/', [VacunaController::class, 'store'])->name('vacuna.store');
@@ -85,7 +85,7 @@ Route::middleware([
         Route::delete('/{vacuna}', [VacunaController::class, 'destroy'])->name('vacuna.delete');
     });
 
-    Route::group(['prefix' => 'servicio'], function () {
+    Route::group(['prefix' => 'servicio', 'middleware' => ['can:servicio.index', 'auth']], function () {
         Route::get('/', [ServicioController::class, 'index'])->name('servicio.index');
         Route::get('/create', [ServicioController::class, 'create'])->name('servicio.create');
         Route::post('/', [ServicioController::class, 'store'])->name('servicio.store');
@@ -94,7 +94,7 @@ Route::middleware([
         Route::delete('/{servicio}', [ServicioController::class, 'destroy'])->name('servicio.delete');
     });
 
-    Route::group(['prefix' => 'reserva'], function () {
+    Route::group(['prefix' => 'reserva', 'middleware' => ['can:reserva.index', 'auth']], function () {
         Route::get('/', [ReservaController::class, 'index'])->name('reserva.index');
         Route::get('/create', [ReservaController::class, 'create'])->name('reserva.create');
         Route::post('/', [ReservaController::class, 'store'])->name('reserva.store');
@@ -104,7 +104,7 @@ Route::middleware([
         Route::delete('/{reserva}', [ReservaController::class, 'destroy'])->name('reserva.delete');
     });
 
-    Route::group(['prefix' => 'atencion'], function () {
+    Route::group(['prefix' => 'atencion', 'middleware' => ['can:atencion.index', 'auth']], function () {
         Route::get('/', [AtencionController::class, 'index'])->name('atencion.index');
         Route::get('/create', [AtencionController::class, 'create'])->name('atencion.create');
         Route::get('/edit/{atencion}', [AtencionController::class, 'edit'])->name('atencion.edit');
@@ -117,7 +117,7 @@ Route::middleware([
     });
 
     // Modulo compra y venta
-    Route::group(['prefix' => 'producto'], function () {
+    Route::group(['prefix' => 'producto', 'middleware' => ['can:producto.index', 'auth']], function () {
         Route::get('/', [ProductoController::class, 'index'])->name('producto.index');
         Route::get('/create', [ProductoController::class, 'create'])->name('producto.create');
         Route::post('/', [ProductoController::class, 'store'])->name('producto.store');
@@ -127,7 +127,7 @@ Route::middleware([
         Route::delete('/{producto}', [ProductoController::class, 'destroy'])->name('producto.delete');
     });
 
-    Route::group(['prefix' => 'proveedor'], function () {
+    Route::group(['prefix' => 'proveedor', 'middleware' => ['can:proveedor.index', 'auth']], function () {
         Route::get('/', [ProveedorController::class, 'index'])->name('proveedor.index');
         Route::get('/create', [ProveedorController::class, 'create'])->name('proveedor.create');
         Route::post('/', [ProveedorController::class, 'store'])->name('proveedor.store');
@@ -137,7 +137,7 @@ Route::middleware([
         Route::delete('/{proveedor}', [ProveedorController::class, 'destroy'])->name('proveedor.delete');
     });
 
-    Route::group(['prefix' => 'nota_compra'], function () {
+    Route::group(['prefix' => 'nota_compra', 'middleware' => ['can:nota_compra.index', 'auth']], function () {
         Route::get('/', [NotaCompraController::class, 'index'])->name('nota_compra.index');
         Route::get('/create', [NotaCompraController::class, 'create'])->name('nota_compra.create');
         Route::post('/', [NotaCompraController::class, 'store'])->name('nota_compra.store');
@@ -147,7 +147,7 @@ Route::middleware([
         Route::delete('/{nota_compra}', [NotaCompraController::class, 'destroy'])->name('nota_compra.delete');
     });
 
-    Route::group(['prefix' => 'nota_venta'], function () {
+    Route::group(['prefix' => 'nota_venta', 'middleware' => ['can:nota_venta.index', 'auth']], function () {
         Route::get('/', [NotaVentaController::class, 'index'])->name('nota_venta.index');
         Route::get('/create', [NotaVentaController::class, 'create'])->name('nota_venta.create');
         Route::post('/', [NotaVentaController::class, 'store'])->name('nota_venta.store');

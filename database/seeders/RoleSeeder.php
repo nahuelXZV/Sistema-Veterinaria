@@ -24,7 +24,16 @@ class RoleSeeder extends Seeder
         //Permisos
         Permission::create(['name' => 'usuario.index', 'description' => 'Gestionar usuarios'])->syncRoles($admin);
         Permission::create(['name' => 'roles.index', 'description' => 'Gestionar roles'])->syncRoles($admin);
-        Permission::create(['name' => 'clientes.index', 'description' => 'Gestionar clientes'])->syncRoles($admin, $vendedor);
-        Permission::create(['name' => 'mascotas.index', 'description' => 'Gestionar mascotas'])->syncRoles($admin, $vendedor, $veterinario);
+        Permission::create(['name' => 'cliente.index', 'description' => 'Gestionar clientes'])->syncRoles($admin, $vendedor);
+        Permission::create(['name' => 'mascota.index', 'description' => 'Gestionar mascotas'])->syncRoles($admin, $vendedor, $veterinario);
+        Permission::create(['name' => 'bitacora.index', 'description' => 'Gestionar bitacora'])->syncRoles($admin);
+        Permission::create(['name' => 'vacuna.index', 'description' => 'Gestionar vacunas'])->syncRoles($admin, $vendedor, $veterinario);
+        Permission::create(['name' => 'servicio.index', 'description' => 'Gestionar servicios'])->syncRoles($admin, $vendedor, $veterinario);
+        Permission::create(['name' => 'reserva.index', 'description' => 'Gestionar reservas'])->syncRoles($admin, $veterinario);
+        Permission::create(['name' => 'atencion.index', 'description' => 'Gestionar atenciones'])->syncRoles($admin, $veterinario);
+        Permission::create(['name' => 'producto.index', 'description' => 'Gestionar productos'])->syncRoles($admin, $vendedor);
+        Permission::create(['name' => 'proveedor.index', 'description' => 'Gestionar atenciones'])->syncRoles($admin, $vendedor);
+        Permission::create(['name' => 'nota_compra.index', 'description' => 'Gestionar compras'])->syncRoles($admin, $vendedor);
+        Permission::create(['name' => 'nota_venta.index', 'description' => 'Gestionar ventas'])->syncRoles($admin, $vendedor);
     }
 }
