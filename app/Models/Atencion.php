@@ -15,5 +15,23 @@ class Atencion extends Model
         'frecuencia_cardiaca',
         'frecuencia_respiratoria',
         'otros',
+        'cliente_id',
+        'mascota_id',
+        'reserva_id',
     ];
+
+    public function mascota()
+    {
+        return $this->belongsTo(Mascota::class);
+    }
+
+    public function reserva()
+    {
+        return $this->belongsTo(Reserva::class);
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
 }

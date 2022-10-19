@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Servicio;
 use App\Http\Controllers\Controller;
 use App\Models\Atencion;
 use App\Models\Bitacora;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class AtencionController extends Controller
@@ -17,11 +18,6 @@ class AtencionController extends Controller
     public function create()
     {
         return view('servicio.atencion.create');
-    }
-
-    public function store(Request $request)
-    {
-        return redirect()->route('atencion.index');
     }
 
     public function recibo()
@@ -37,11 +33,6 @@ class AtencionController extends Controller
     public function edit($id)
     {
         return view('servicio.atencion.edit', compact('atencion'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        return redirect()->route('atencion.index');
     }
 
     public function destroy($id)

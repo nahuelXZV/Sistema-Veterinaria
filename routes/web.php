@@ -100,6 +100,7 @@ Route::middleware([
         Route::post('/', [ReservaController::class, 'store'])->name('reserva.store');
         Route::get('/edit/{reserva}', [ReservaController::class, 'edit'])->name('reserva.edit');
         Route::get('/show/{reserva}', [ReservaController::class, 'show'])->name('reserva.show');
+        Route::get('/reserva/{reserva}', [ReservaController::class, 'atencion'])->name('reserva.atencion');
         Route::put('/{reserva}', [ReservaController::class, 'update'])->name('reserva.update');
         Route::delete('/{reserva}', [ReservaController::class, 'destroy'])->name('reserva.delete');
     });

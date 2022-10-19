@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->id();
             $table->date('fecha_atencion');
+            $table->time('hora_atencion');
             $table->string('estado')->default('activo');
 
-            $table->foreignId('cliente_id')->constrained('clientes');
+            $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade');
             $table->timestamps();
         });
     }

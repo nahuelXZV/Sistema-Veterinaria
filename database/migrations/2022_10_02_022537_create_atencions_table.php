@@ -21,9 +21,12 @@ return new class extends Migration
             $table->double('frecuencia_cardiaca')->nullable();
             $table->double('frecuencia_respiratoria')->nullable();
             $table->text('otros')->nullable();
-
-            $table->foreignId('mascota_id')->constrained('mascotas');
-            $table->foreignId('reserva_id')->constrained('reservas');
+            $table->unsignedBigInteger('cliente_id')->nullable();
+            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->unsignedBigInteger('mascota_id');
+            $table->foreign('mascota_id')->references('id')->on('mascotas');
+            $table->unsignedBigInteger('reserva_id')->nullable();
+            $table->foreign('reserva_id')->references('id')->on('reservas');
             $table->timestamps();
         });
     }

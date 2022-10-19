@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('observaciones')->nullable();
             $table->text('indicaciones');
 
-            $table->foreignId('atencion_id')->constrained('atencions');
+            $table->foreignId('atencion_id')->constrained('atencions')->onDelete('cascade');
             $table->timestamps();
         });
     }

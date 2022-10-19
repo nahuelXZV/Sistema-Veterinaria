@@ -11,5 +11,6 @@ class Tratamiento extends Model
     protected $fillable = [
         'observaciones',
         'indicaciones',
+        'atencion_id',
     ];
 }

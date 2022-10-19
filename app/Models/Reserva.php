@@ -10,6 +10,13 @@ class Reserva extends Model
     use HasFactory;
     protected $fillable = [
         'fecha_atencion',
+        'hora_atencion',
         'estado',
+        'cliente_id',
     ];
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
 }
