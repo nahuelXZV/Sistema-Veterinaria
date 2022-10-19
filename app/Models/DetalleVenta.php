@@ -14,4 +14,14 @@ class DetalleVenta extends Model
         'nota_venta_id',
         'producto_id',
     ];
+
+    public function nota_venta()
+    {
+        return $this->belongsTo(NotaVenta::class);
+    }
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class);
+    }
 }

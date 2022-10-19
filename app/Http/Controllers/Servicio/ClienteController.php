@@ -62,11 +62,18 @@ class ClienteController extends Controller
         return redirect()->route('cliente.index');
     }
 
+    public function show($id)
+    {
+        $cliente = Cliente::find($id);
+        $mascotas = $cliente->mascotas;
+        return view('servicio.cliente.show', compact('cliente', 'mascotas'));
+    }
+
     public function destroy($id)
     {
         $cliente = Cliente::find($id);
-        $cliente->delete();
         Bitacora::Bitacora('D', 'Clientes', $cliente->id);
+        $cliente->delete();
         return redirect()->route('cliente.index');
     }
 }

@@ -13,4 +13,9 @@ class NotaVenta extends Model
         'monto_total',
         'otros',
     ];
+
+    public function detalle_nota_ventas()
+    {
+        return $this->hasMany(DetalleVenta::class);
+    }
 }
