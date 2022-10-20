@@ -16,6 +16,9 @@ class LwCreate extends Component
     {
         $this->validate([
             'name' => 'required|unique:roles',
+        ], [
+            'name.required' => 'El campo nombre es obligatorio',
+            'name.unique' => 'El nombre ya se encuentra registrado',
         ]);
         $rol = Role::create([
             'name' => $this->name,

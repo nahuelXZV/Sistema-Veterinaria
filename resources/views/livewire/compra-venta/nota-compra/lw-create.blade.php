@@ -131,6 +131,9 @@
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
                             Cantidad
                         </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
+                            Total
+                        </th>
                         <th scope="col" class="w-20 px-6 py-4 text-xs font-bold uppercase tracking-wider">
                             Acciones
                         </th>
@@ -150,6 +153,9 @@
                             </td>
                             <td class="px-6 py-2 text-sm">
                                 {{ $producto['cantidad'] }}
+                            </td>
+                            <td class="px-6 py-2 text-sm">
+                                {{ $producto['cantidad'] * $producto['precio'] }}
                             </td>
                             <td class="px-6 py-2 whitespace-nowrap flex">
                                 <x-jet-button wire:click="delLista({{ $producto['id'] }})">

@@ -26,9 +26,15 @@ class LwEdit extends Component
 
     public function add()
     {
-        $this->validate([
-            'name' => 'required',
-        ]);
+        $this->validate(
+            [
+                'name' => 'required|unique:roles,name,' . $this->rol->id,
+            ],
+            [
+                'name.required' => 'El campo nombre es obligatorio',
+                'name.unique' => 'El nombre ya se encuentra registrado',
+            ]
+        );
         $this->rol->name = $this->name;
         $this->rol->syncPermissions($this->permisosV);
         $this->rol->save();

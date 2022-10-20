@@ -39,7 +39,7 @@
             <div class="flex-1 px-6 py-4 flex items-center">
                 <x-jet-label class="w-32" for="nombre" value="{{ __('Raza') }}" />
                 <x-jet-input class="flex-1 rounded-md shadow-sm" type="text" name="nombre" id="nombre"
-                    value="{{ $mascota->nombre }}" readonly />
+                    value="{{ $mascota->raza }}" readonly />
             </div>
             <div class="flex-1 px-6 py-4 flex items-center">
                 <x-jet-label class="w-32" for="nombre" value="{{ __('Especie') }}" />
@@ -51,7 +51,7 @@
             <div class="flex-1 px-6 py-4 flex items-center">
                 <x-jet-label class="w-32" for="nombre" value="{{ __('Sexo') }}" />
                 <x-jet-input class="flex-1 rounded-md shadow-sm" type="text" name="nombre" id="nombre"
-                    value="{{ $mascota->nombre }}" readonly />
+                    value="{{ $mascota->sexo }}" readonly />
             </div>
             <div class="flex-1 px-6 py-4 flex items-center">
                 <x-jet-label class="w-32" for="nombre" value="{{ __('Fecha nacimiento') }}" />
