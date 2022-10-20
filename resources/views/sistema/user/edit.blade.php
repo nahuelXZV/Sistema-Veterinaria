@@ -61,7 +61,10 @@
                                     name="role" id="role">
                                     <option value="">Seleccione un role</option>
                                     @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        <option value="{{ $role->id }}"
+                                            {{ $user->roles->contains($role->id) ? 'selected' : '' }}>
+                                            {{ $role->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('role')

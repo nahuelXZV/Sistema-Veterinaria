@@ -27,12 +27,13 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users,email',
             'password' => 'required',
             'role' => 'required',
         ], [
             'name.required' => 'El campo nombre es obligatorio',
             'email.required' => 'El campo email es obligatorio',
+            'email.unique' => 'El email ya se encuentra registrado',
             'password.required' => 'El campo contraseña es obligatorio',
             'role.required' => 'El campo rol es obligatorio',
         ]);
@@ -58,15 +59,18 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|unique:users,email,' . $id,
         ], [
             'name.required' => 'El campo nombre es obligatorio',
             'email.required' => 'El campo email es obligatorio',
+            'email.unique' => 'El email ya se encuentra registrado',
         ]);
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
         $user->save();
         if ($request->role != null) {
             if ($user->roles->first()) {

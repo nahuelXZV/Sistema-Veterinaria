@@ -23,14 +23,16 @@ class ClienteController extends Controller
     {
         $request->validate([
             'nombre' => 'required',
-            'telefono' => 'required',
+            'telefono' => 'required|unique:clientes,telefono',
             'direccion' => 'required',
-            'correo' => 'required',
+            'correo' => 'required|unique:clientes,correo',
         ], [
             'nombre.required' => 'El campo nombre es obligatorio',
             'telefono.required' => 'El campo telefono es obligatorio',
+            'telefono.unique' => 'El telefono ya se encuentra registrado',
             'direccion.required' => 'El campo direccion es obligatorio',
             'correo.required' => 'El campo correo es obligatorio',
+            'correo.unique' => 'El correo ya se encuentra registrado',
         ]);
         $cliente = Cliente::create($request->all());
         Bitacora::Bitacora('C', 'Clientes', $cliente->id);
@@ -47,14 +49,16 @@ class ClienteController extends Controller
     {
         $request->validate([
             'nombre' => 'required',
-            'telefono' => 'required',
+            'telefono' => 'required|unique:clientes,telefono,' . $id,
             'direccion' => 'required',
-            'correo' => 'required',
+            'correo' => 'required|unique:clientes,correo,' . $id,
         ], [
             'nombre.required' => 'El campo nombre es obligatorio',
             'telefono.required' => 'El campo telefono es obligatorio',
+            'telefono.unique' => 'El telefono ya se encuentra registrado',
             'direccion.required' => 'El campo direccion es obligatorio',
             'correo.required' => 'El campo correo es obligatorio',
+            'correo.unique' => 'El correo ya se encuentra registrado',
         ]);
         $cliente = Cliente::find($id);
         $cliente->update($request->all());
