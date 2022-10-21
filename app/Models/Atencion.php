@@ -34,4 +34,9 @@ class Atencion extends Model
     {
         return $this->belongsTo(Cliente::class);
     }
+
+    public function tratamiento()
+    {
+        return $this->hasOne(Tratamiento::class);
+    }
 }

@@ -28,13 +28,13 @@
                                     Tipo*
                                 </x-label-input>
                                 <div class="flex items-center">
-                                    <input type="radio" name="tipo" value="producto"
-                                        {{ $producto->tipo == 'producto' ? 'checked' : '' }}
+                                    <input type="radio" name="tipo" value="Producto"
+                                        {{ $producto->tipo == 'Producto' ? 'checked' : '' }}
                                         class="form-radio h-5 w-5 text-[#6A64F1] focus:ring-[#6A64F1] border-gray-300 rounded">
                                     <span class="ml-2 text-gray-700 mr-4">Producto</span>
 
-                                    <input type="radio" name="tipo" value="medico"
-                                        {{ $producto->tipo == 'medico' ? 'checked' : '' }}
+                                    <input type="radio" name="tipo" value="Medico"
+                                        {{ $producto->tipo == 'Medico' ? 'checked' : '' }}
                                         class="form-radio h-5 w-5 text-[#6A64F1] focus:ring-[#6A64F1] border-gray-300 rounded">
                                     <span class="ml-2 text-gray-700">Medico</span>
                                 </div>
@@ -105,13 +105,13 @@
 
                     <div class="-mx-3 px-3 py-4 flex items-center">
                         <div class="flex items-center">
+                            <x-jet-button class="mr-1">
+                                Guardar
+                            </x-jet-button>
                             <a href="{{ route('producto.show', $producto->id) }}"
                                 class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                                 {{ __('Volver') }}
                             </a>
-                            <x-jet-button>
-                                Guardar
-                            </x-jet-button>
                         </div>
                     </div>
                 </form>

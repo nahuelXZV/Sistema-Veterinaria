@@ -16,6 +16,10 @@
                     class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                     {{ __('Editar') }}
                 </a>
+                <a href="{{ route('mascota.vacunar', $mascota->id) }}"
+                    class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
+                    {{ __('Vacunar') }}
+                </a>
             </div>
         </div>
 
@@ -71,7 +75,6 @@
 
     <x-card>
         <h1 class="text-2xl font-bold text-leaf m-4 lg:text-center">Historial Clinico</h1>
-
         <ul class="nav nav-pills flex flex-col md:flex-row flex-wrap list-none pl-0 mb-4 mt-4" id="pills-tab3"
             role="tablist">
             <li class="nav-item" role="presentation">
@@ -92,17 +95,12 @@
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent3">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab3">
-                {{-- @livewire('paciente.historial.lw-index', ['id' => $id]) --}}
-                <div class="px-6 py-4 h-32">
-                    Consultas realizadas
-                </div>
+            <div class="tab-pane fade show active mb-4" id="pills-home" role="tabpanel"
+                aria-labelledby="pills-home-tab3">
+                @livewire('servicio.mascota.lw-atencion', ['id' => $mascota->id])
             </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab3">
-                {{-- @livewire('paciente.historial.lw-realizadas', ['id' => $id]) --}}
-                <div class="px-6 py-4 h-32">
-                    Control de vacunas
-                </div>
+                @livewire('servicio.mascota.lw-vacunas', ['id' => $mascota->id])
             </div>
         </div>
     </x-card>
