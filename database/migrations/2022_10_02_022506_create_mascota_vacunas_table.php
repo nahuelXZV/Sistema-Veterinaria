@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('mascota_id')->constrained('mascotas')->onDelete('cascade');
             $table->foreignId('vacuna_id')->constrained('vacunas')->onDelete('cascade');
+            $table->date('fecha');
+            $table->string('observacion')->nullable();
             $table->timestamps();
         });
     }

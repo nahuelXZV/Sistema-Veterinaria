@@ -69,9 +69,11 @@ Route::middleware([
     Route::group(['prefix' => 'mascota', 'middleware' => ['can:mascota.index', 'auth']], function () {
         Route::get('/', [MascotaController::class, 'index'])->name('mascota.index');
         Route::get('/create', [MascotaController::class, 'create'])->name('mascota.create');
-        Route::post('/', [MascotaController::class, 'store'])->name('mascota.store');
         Route::get('/edit/{mascota}', [MascotaController::class, 'edit'])->name('mascota.edit');
         Route::get('/show/{mascota}', [MascotaController::class, 'show'])->name('mascota.show');
+        Route::get('/vacunar/{mascota}', [MascotaController::class, 'vacunar'])->name('mascota.vacunar');
+        Route::post('/', [MascotaController::class, 'store'])->name('mascota.store');
+        Route::post('/vacunar', [MascotaController::class, 'store_vacunar'])->name('mascota.store_vacunar');
         Route::put('/{mascota}', [MascotaController::class, 'update'])->name('mascota.update');
         Route::delete('/{mascota}', [MascotaController::class, 'destroy'])->name('mascota.delete');
     });

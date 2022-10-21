@@ -22,4 +22,15 @@ class Mascota extends Model
     {
         return $this->belongsTo(Cliente::class);
     }
+
+    public function atenciones()
+    {
+        return $this->hasMany(Atencion::class);
+    }
+
+    // vacunas
+    public function vacunas()
+    {
+        return $this->belongsToMany(Vacuna::class, 'mascota_vacuna');
+    }
 }

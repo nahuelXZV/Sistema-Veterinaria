@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Bitacora;
 use App\Models\Cliente;
 use App\Models\Mascota;
+use App\Models\MascotaVacuna;
+use App\Models\Vacuna;
 use Illuminate\Http\Request;
 
 class MascotaController extends Controller
@@ -93,5 +95,31 @@ class MascotaController extends Controller
         Bitacora::Bitacora('D', 'Mascota', $mascota->id);
         $mascota->delete();
         return redirect()->route('mascota.index');
+    }
+
+    public function vacunar($id)
+    {
+        $mascota = Mascota::find($id);
+        $vacunas_realizadas = MascotaVacuna::where('mascota_id', $id)->get();
+        $vacunas_realizadas_id = $vacunas_realizadas->pluck('id');
+        $vacunas = Vacuna::whereNotIn('id', $vacunas_realizadas_id)->get();
+        return view('servicio.mascota.vacunar', compact('vacunas', 'mascota'));
+    }
+
+    public function store_vacunar(Request $request)
+    {
+        $request->validate([
+            'mascota_id' => 'required',
+            'vacuna_id' => 'required',
+            'fecha' => 'required|date',
+        ], [
+            'mascota_id.required' => 'El campo mascota es obligatorio',
+            'vacuna_id.required' => 'El campo vacuna es obligatorio',
+            'fecha.required' => 'El campo fecha es obligatorio',
+            'fecha.date' => 'El campo fecha debe ser una fecha',
+        ]);
+        $mascota = Mascota::find($request->mascota_id);
+        $mascota->vacunas()->attach($request->vacuna_id, ['fecha' => $request->fecha]);
+        return redirect()->route('mascota.show', $mascota->id);
     }
 }
