@@ -59,7 +59,7 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
         <script>
-            window.innerWidth <= 768 ? open = false : open = true;
+            window.innerWidth <= 1200 ? open = false : open = true;
             const setup = () => {
                 return {
                     loading: true,
