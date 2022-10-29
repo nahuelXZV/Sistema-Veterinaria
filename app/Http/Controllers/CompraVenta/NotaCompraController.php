@@ -28,6 +28,13 @@ class NotaCompraController extends Controller
     public function destroy($id)
     {
         $nota_compra = NotaCompra::find($id);
+        // devolver el stock a los productos
+        $detalles = $nota_compra->detalle_nota_compras;
+        foreach ($detalles as $detalle) {
+            $producto = $detalle->producto;
+            $producto->cantidad -= $detalle->cantidad;
+            $producto->save();
+        }
         Bitacora::Bitacora('D', 'Nota de Compra', $nota_compra->id);
         $nota_compra->delete();
         return redirect()->route('nota_compra.index');

@@ -56,6 +56,7 @@ class LwCreate extends Component
 
     public function delLista($id)
     {
+        // eliminamos de la lista de productos un producto
         foreach ($this->lista_productos as $key => $producto) {
             if ($producto['id'] == $id) {
                 unset($this->lista_productos[$key]);
@@ -76,18 +77,23 @@ class LwCreate extends Component
             'producto.cantidad.required' => 'El campo cantidad es obligatorio',
             'producto.precio.required' => 'El campo precio es obligatorio',
         ]);
+        // buscamos el producto por su id
         $prod = Producto::find($this->producto['producto_id']);
+        // agregamos el producto a la lista de productos
         array_push($this->lista_productos, [
             'id' => $this->producto['producto_id'],
             'nombre' => $prod->nombre,
             'cantidad' => $this->producto['cantidad'],
             'precio' => $this->producto['precio'],
         ]);
+        // agregamos el id del producto a la lista de ids de productos
         array_push($this->lista_productos_id, $prod->id);
+        // limpiamos el campo producto
         $this->producto = [];
         $this->getTotal();
     }
 
+    // obtener el total de la compra
     public function getTotal()
     {
         $total = 0;

@@ -69,6 +69,7 @@ class LwEdit extends Component
 
     public function delLista($id)
     {
+        // eliminar el producto de la lista
         foreach ($this->lista_productos as $key => $producto) {
             if ($producto['id'] == $id) {
                 unset($this->lista_productos[$key]);

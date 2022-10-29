@@ -88,13 +88,13 @@
                     @foreach ($lista_productos as $producto)
                         <tr>
                             <td class="px-6 py-2 text-sm text-gray-900 font-bold">
-                                {{ $producto->producto->id }}
+                                {{ $producto->producto ? $producto->producto->id : 'N/A' }}
                             </td>
                             <td class="px-6 py-2 text-sm text-gray-900 font-bold">
-                                {{ $producto->producto->nombre }}
+                                {{ $producto->producto ? $producto->producto->nombre : 'N/A' }}
                             </td>
                             <td class="px-6 py-2 text-sm">
-                                {{ $producto->producto->tipo }}
+                                {{ $producto->producto ? $producto->producto->tipo : 'N/A' }}
                             </td>
                             <td class="px-6 py-2 text-sm">
                                 {{ $producto->precio }}

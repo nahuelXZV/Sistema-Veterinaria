@@ -67,12 +67,12 @@ class LwCreate extends Component
     {
         $this->validate([
             'producto.producto_id' => 'required',
-            'producto.cantidad' => 'required|max:' . $this->producto['max_cantidad'],
+            'producto.cantidad' => 'required|lte:' . $this->producto['max_cantidad'],
             'producto.precio' => 'required',
         ], [
             'producto.producto_id.required' => 'El campo producto es obligatorio',
             'producto.cantidad.required' => 'El campo cantidad es obligatorio',
-            'producto.cantidad.max' => 'La cantidad no puede ser mayor a ' . $this->producto['max_cantidad'],
+            'producto.cantidad.lte' => 'La cantidad no puede ser mayor a ' . $this->producto['max_cantidad'],
             'producto.precio.required' => 'El campo precio es obligatorio',
         ]);
         $prod = Producto::find($this->producto['producto_id']);

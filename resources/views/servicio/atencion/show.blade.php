@@ -137,7 +137,7 @@
                 </div>
 
                 @if ($atencion->otros)
-                    <div class="-mx-3 flex flex-wrap px-3">
+                    <div class="-mx-3 flex flex-wrap px-3 mt-2">
                         <x-label-input>
                             Otros
                         </x-label-input>

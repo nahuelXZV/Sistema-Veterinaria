@@ -19,7 +19,7 @@ return new class extends Migration
             $table->time('hora_atencion');
             $table->string('estado')->default('activo');
 
-            $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade');
+            $table->foreignId('cliente_id')->onDelete('cascade')->constrained('clientes');
             $table->timestamps();
         });
     }

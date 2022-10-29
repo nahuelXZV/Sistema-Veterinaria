@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->double('precio');
 
-            $table->foreignId('servicio_id')->constrained('servicios')->onDelete('no action');
-            $table->foreignId('recibo_id')->constrained('recibos')->onDelete('cascade');
+            $table->foreignId('servicio_id')->nullable()->constrained('servicios')->nullOnDelete();
+            $table->foreignId('recibo_id')->onDelete('cascade')->constrained('recibos');
             $table->timestamps();
         });
     }

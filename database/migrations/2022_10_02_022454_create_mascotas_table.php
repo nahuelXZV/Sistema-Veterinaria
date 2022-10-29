@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('fecha_nacimiento')->nullable();
             $table->text('otros')->nullable();
 
-            $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade');
+            $table->foreignId('cliente_id')->onDelete('cascade')->constrained('clientes');
             $table->timestamps();
         });
     }

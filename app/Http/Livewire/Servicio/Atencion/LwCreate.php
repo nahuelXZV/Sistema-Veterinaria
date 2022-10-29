@@ -38,7 +38,6 @@ class LwCreate extends Component
             'datos.temperatura' => 'required|numeric',
             'datos.frecuencia_cardiaca' => 'required|numeric',
             'datos.frecuencia_respiratoria' => 'required|numeric',
-            'datos.anamnesis' => 'required|string',
         ], [
             'datos.cliente_id.required' => 'El campo cliente es obligatorio',
             'datos.cliente_id.numeric' => 'El campo cliente debe ser un número',
