@@ -24,6 +24,7 @@ class LwIndex extends Component
             ->orWhere('direccion', 'ILIKE', '%' . strtolower($this->attribute) . '%')
             ->orWhere('encargado', 'ILIKE', '%' . strtolower($this->attribute) . '%')
             ->orWhere('tipo', 'ILIKE', '%' . strtolower($this->attribute) . '%')
+            ->orWhere('telefono', 'ILIKE', '%' . strtolower($this->attribute) . '%')
             ->orderBy('id', 'desc')
             ->paginate(20);
         return view('livewire.compra-venta.proveedor.lw-index', compact('proveedores'));

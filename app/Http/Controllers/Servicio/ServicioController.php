@@ -11,40 +11,66 @@ class ServicioController extends Controller
 {
     public function index()
     {
-        return view('compra_venta.producto.index');
+        return view('servicio.servicio.index');
     }
 
     public function create()
     {
-        return view('compra_venta.producto.create');
+        return view('servicio.servicio.create');
     }
 
     public function store(Request $request)
     {
-        return redirect()->route('producto.index');
+        $request->validate([
+            'nombre' => 'required',
+            'precio' => 'required|numeric',
+            'descripcion' => 'required',
+        ], [
+            'nombre.required' => 'El campo nombre es obligatorio',
+            'precio.required' => 'El campo precio es obligatorio',
+            'precio.numeric' => 'El campo precio debe ser un numero',
+            'descripcion.required' => 'El campo descripcion es obligatorio',
+        ]);
+        $servicio = Servicio::create($request->all());
+        Bitacora::Bitacora('C', 'Servicio', $servicio->id);
+        return redirect()->route('servicio.index');
     }
 
     public function edit($id)
     {
-        return view('compra_venta.producto.edit', compact('producto'));
+        $servicio = Servicio::find($id);
+        return view('servicio.servicio.edit', compact('servicio'));
     }
 
     public function update(Request $request, $id)
     {
-        return redirect()->route('producto.index');
+        $request->validate([
+            'nombre' => 'required',
+            'precio' => 'required|numeric',
+            'descripcion' => 'required',
+        ], [
+            'nombre.required' => 'El campo nombre es obligatorio',
+            'precio.required' => 'El campo precio es obligatorio',
+            'precio.numeric' => 'El campo precio debe ser un numero',
+            'descripcion.required' => 'El campo descripcion es obligatorio',
+        ]);
+        $servicio = Servicio::find($id);
+        $servicio->update($request->all());
+        Bitacora::Bitacora('U', 'Servicio', $servicio->id);
+        return redirect()->route('servicio.index');
     }
 
     public function destroy($id)
     {
         $servicio = Servicio::find($id);
-        Bitacora::Bitacora('D', 'Producto', $servicio->id);
+        Bitacora::Bitacora('D', 'Servicio', $servicio->id);
         $servicio->delete();
-        return redirect()->route('producto.index');
+        return redirect()->route('servicio.index');
     }
 
     public function show($id)
     {
         $servicio = Servicio::find($id);
-        return view('compra_venta.producto.show', compact('servicio'));
+        return view('servicio.servicio.show', compact('servicio'));
     }
 }

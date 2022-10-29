@@ -11,40 +11,54 @@ class VacunaController extends Controller
 {
     public function index()
     {
-        return view('compra_venta.producto.index');
+        return view('servicio.vacuna.index');
     }
 
     public function create()
     {
-        return view('compra_venta.producto.create');
+        return view('servicio.vacuna.create');
     }
 
     public function store(Request $request)
     {
-        return redirect()->route('producto.index');
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+        ], [
+            'nombre.required' => 'El campo nombre es obligatorio',
+            'descripcion.required' => 'El campo descripcion es obligatorio',
+        ]);
+        $vacuna = Vacuna::create($request->all());
+        Bitacora::Bitacora('C', 'Vacuna', $vacuna->id);
+        return redirect()->route('vacuna.index');
     }
 
     public function edit($id)
     {
-        return view('compra_venta.producto.edit', compact('producto'));
+        $vacuna = Vacuna::find($id);
+        return view('servicio.vacuna.edit', compact('vacuna'));
     }
 
     public function update(Request $request, $id)
     {
-        return redirect()->route('producto.index');
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+        ], [
+            'nombre.required' => 'El campo nombre es obligatorio',
+            'descripcion.required' => 'El campo descripcion es obligatorio',
+        ]);
+        $vacuna = Vacuna::find($id);
+        $vacuna->update($request->all());
+        Bitacora::Bitacora('U', 'Vacuna', $vacuna->id);
+        return redirect()->route('vacuna.index');
     }
 
     public function destroy($id)
     {
         $vacuna = Vacuna::find($id);
-        Bitacora::Bitacora('D', 'Producto', $vacuna->id);
+        Bitacora::Bitacora('D', 'Vacuna', $vacuna->id);
         $vacuna->delete();
-        return redirect()->route('producto.index');
-    }
-
-    public function show($id)
-    {
-        $vacuna = Vacuna::find($id);
-        return view('compra_venta.producto.show', compact('vacuna'));
+        return redirect()->route('vacuna.index');
     }
 }

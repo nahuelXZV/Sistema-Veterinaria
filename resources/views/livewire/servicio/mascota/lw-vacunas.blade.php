@@ -26,10 +26,10 @@
                         {{ $vacuna->vacuna->nombre }}
                     </td>
                     <td class="px-6 py-2 text-sm">
-                        {{ $vacuna->fecha->format('d-m-Y') }}
+                        {{ $vacuna->fecha }}
                     </td>
                     <td class="px-6 py-2 text-sm">
-                        {{ $vacuna->observaciones }}
+                        {{ $vacuna->observacion ? $vacuna->observacion : 'Sin observaciones' }}
                     </td>
                 </tr>
             @endforeach

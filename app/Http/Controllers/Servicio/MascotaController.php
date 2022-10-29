@@ -119,7 +119,7 @@ class MascotaController extends Controller
             'fecha.date' => 'El campo fecha debe ser una fecha',
         ]);
         $mascota = Mascota::find($request->mascota_id);
-        $mascota->vacunas()->attach($request->vacuna_id, ['fecha' => $request->fecha]);
+        MascotaVacuna::create($request->all());
         return redirect()->route('mascota.show', $mascota->id);
     }
 }
