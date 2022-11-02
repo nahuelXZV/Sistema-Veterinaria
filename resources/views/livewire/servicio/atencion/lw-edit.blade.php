@@ -5,13 +5,10 @@
     <x-card>
         <div class="px-5 py-3 flex items-center">
             <div class="flex items-center mr-2">
-                <a href="{{ route('atencion.index') }}"
+                <a href="{{ route('atencion.show', $atencion->id) }}"
                     class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                     {{ __('Volver') }}
                 </a>
-                <x-jet-button wire:click='recibo()' class="mr-1">
-                    Cobrar / Recibo
-                </x-jet-button>
                 <x-jet-button wire:click='save()'>
                     Guardar
                 </x-jet-button>
@@ -28,20 +25,8 @@
                             <x-label-input>
                                 Cliente*
                             </x-label-input>
-                            @if ($reserva != null)
-                                <x-jet-input type="text" class="w-full" value="{{ $reserva->cliente->nombre }}"
-                                    disabled />
-                            @else
-                                <select class="w-full" wire:model='datos.cliente_id'>
-                                    <option value="">Seleccione un cliente</option>
-                                    @foreach ($clientes as $cliente)
-                                        <option value="{{ $cliente->id }}">{{ $cliente->nombre }}</option>
-                                    @endforeach
-                                </select>
-                                @error('datos.cliente_id')
-                                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
-                            @endif
+                            <x-jet-input type="text" class="w-full" value="{{ $atencion->cliente->nombre }}"
+                                disabled />
                         </div>
                     </div>
                     <div class="w-full px-3 sm:w-1/2">
@@ -49,15 +34,8 @@
                             <x-label-input>
                                 Mascota*
                             </x-label-input>
-                            <select class="w-full" wire:model.defer='datos.mascota_id'>
-                                <option value="">Seleccione una mascota</option>
-                                @foreach ($mascotas as $mascota)
-                                    <option value="{{ $mascota->id }}">{{ $mascota->nombre }}</option>
-                                @endforeach
-                            </select>
-                            @error('datos.mascota_id')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
+                            <x-jet-input type="text" class="w-full" value="{{ $atencion->mascota->nombre }}"
+                                disabled />
                         </div>
                     </div>
                 </div>
@@ -117,7 +95,7 @@
                             Anamnesis
                         </x-label-input>
                         <textarea placeholder="Anamnesis....." wire:model.defer='datos.anamnesis' id="anamnesis" name="anamnesis"
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"></textarea>
+                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">{{ $atencion->anamnesis }}</textarea>
                     </div>
                     @error('datos.anamnesis')
                         <span class="px-3 text-red-500 text-sm">{{ $message }}</span>
@@ -140,7 +118,7 @@
                         </x-label-input>
                         <textarea placeholder="Observaciones....." rows="7" wire:model.defer='datos.observaciones' id="observaciones"
                             name="observaciones"
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"></textarea>
+                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">{{ $atencion->tratamiento ? $atencion->tratamiento->observaciones : '' }}</textarea>
                         @error('datos.observaciones')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
@@ -153,7 +131,7 @@
                         </x-label-input>
                         <textarea placeholder="Indicaciones....." rows="7" wire:model.defer='datos.indicaciones' id="indicaciones"
                             name="indicaciones"
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"></textarea>
+                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">{{ $atencion->tratamiento ? $atencion->tratamiento->observaciones : '' }}</textarea>
                         @error('datos.observaciones')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
@@ -165,7 +143,7 @@
                             Otros
                         </x-label-input>
                         <textarea placeholder="Otros....." rows="3" wire:model.defer='datos.otros' id="otros" name="otros"
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"></textarea>
+                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">{{ $atencion->otros }}</textarea>
                     </div>
                 </div>
             </div>

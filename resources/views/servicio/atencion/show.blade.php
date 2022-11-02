@@ -16,10 +16,22 @@
                     class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                     {{ __('Editar') }}
                 </a>
-                <a href="{{ route('atencion.edit', $atencion->id) }}"
+                <a href="{{ route('atencion.descargar_atencion', $atencion->id) }}"
                     class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
-                    {{ __('Recibo') }}
+                    {{ __('Descargar') }}
                 </a>
+                @if ($recibo)
+                    <a href="{{ route('atencion.recibo_show', $atencion->id) }}"
+                        class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
+                        {{ __('Ver Recibo') }}
+                    </a>
+                @else
+                    <a href="{{ route('atencion.recibo', $atencion->id) }}"
+                        class='mr-1 px-4 py-2 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
+                        {{ __('Crear Recibo') }}
+                    </a>
+                @endif
+
             </div>
         </div>
 

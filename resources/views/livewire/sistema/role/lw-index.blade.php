@@ -58,7 +58,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <x-pagination :modelo='$roles'> </x-pagination>
         </div>
+        <x-pagination :modelo='$roles'> </x-pagination>
     </x-card>
 </div>

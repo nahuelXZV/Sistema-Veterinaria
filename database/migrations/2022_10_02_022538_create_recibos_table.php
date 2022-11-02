@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->double('monto_total')->default(0);
 
-            $table->foreignId('atencion_id')->onDelete('cascade')->constrained('atencions');
+            $table->unsignedBigInteger('atencion_id')->nullable();
+            $table->foreign('atencion_id')->references('id')->on('atencions')->nullOnDelete();
             $table->timestamps();
         });
     }

@@ -10,5 +10,6 @@ class Recibo extends Model
     use HasFactory;
     protected $fillable = [
         'monto_total',
+        'atencion_id',
     ];
 }

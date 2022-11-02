@@ -113,10 +113,14 @@ Route::middleware([
         Route::get('/edit/{atencion}', [AtencionController::class, 'edit'])->name('atencion.edit');
         Route::get('/show/{atencion}', [AtencionController::class, 'show'])->name('atencion.show');
         Route::get('/recibo/{atencion}', [AtencionController::class, 'recibo'])->name('atencion.recibo');
+        Route::get('/recibo/show/{atencion}', [AtencionController::class, 'recibo_show'])->name('atencion.recibo_show');
         Route::post('/', [AtencionController::class, 'store'])->name('atencion.store');
         Route::post('/recibo', [AtencionController::class, 'recibo_store'])->name('atencion.recibo_store');
         Route::put('/{atencion}', [AtencionController::class, 'update'])->name('atencion.update');
         Route::delete('/{atencion}', [AtencionController::class, 'destroy'])->name('atencion.delete');
+        // Reportes
+        Route::get('/recibo/descargar/{atencion}', [AtencionController::class, 'descargar_recibo'])->name('atencion.descargar_recibo');
+        Route::get('/atencion/descargar/{atencion}', [AtencionController::class, 'descargar_atencion'])->name('atencion.descargar_atencion');
     });
 
     // Modulo compra y venta

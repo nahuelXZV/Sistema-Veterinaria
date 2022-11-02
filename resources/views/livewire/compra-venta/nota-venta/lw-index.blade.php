@@ -70,7 +70,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <x-pagination :modelo='$nota_ventas'> </x-pagination>
         </div>
+        <x-pagination :modelo='$nota_ventas'> </x-pagination>
     </x-card>
 </div>

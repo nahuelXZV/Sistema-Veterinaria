@@ -88,7 +88,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <x-pagination :modelo='$proveedores'> </x-pagination>
         </div>
+        <x-pagination :modelo='$proveedores'> </x-pagination>
     </x-card>
 </div>

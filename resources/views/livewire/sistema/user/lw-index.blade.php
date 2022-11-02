@@ -71,7 +71,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <x-pagination :modelo='$users'> </x-pagination>
         </div>
+        <x-pagination :modelo='$users'> </x-pagination>
     </x-card>
 </div>

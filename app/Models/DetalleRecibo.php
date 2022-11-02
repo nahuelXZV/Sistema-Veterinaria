@@ -11,5 +11,17 @@ class DetalleRecibo extends Model
     protected $fillable = [
         'precio',
         'cantidad',
+        'recibo_id',
+        'producto_id',
     ];
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class);
+    }
+
+    public function recibo()
+    {
+        return $this->belongsTo(Recibo::class);
+    }
 }

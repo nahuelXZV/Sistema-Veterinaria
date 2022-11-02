@@ -56,7 +56,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <x-pagination :modelo='$bitacoras'> </x-pagination>
         </div>
+        <x-pagination :modelo='$bitacoras'> </x-pagination>
     </x-card>
 </div>

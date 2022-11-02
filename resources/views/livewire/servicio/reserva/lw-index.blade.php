@@ -109,7 +109,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <x-pagination :modelo='$reservas'> </x-pagination>
         </div>
+        <x-pagination :modelo='$reservas'> </x-pagination>
     </x-card>
 </div>
