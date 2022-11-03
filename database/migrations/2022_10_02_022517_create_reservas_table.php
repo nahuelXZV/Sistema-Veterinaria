@@ -19,7 +19,9 @@ return new class extends Migration
             $table->time('hora_atencion');
             $table->string('estado')->default('activo');
 
-            $table->foreignId('cliente_id')->nullable()->onDelete('cascade')->constrained('clientes');
+            $table->unsignedBigInteger('cliente_id')->nullable();
+            $table->foreign('cliente_id')->references('id')->on('clientes')->nullOnDelete();
+            // $table->foreignId('cliente_id')->nullable()->onDelete('cascade')->constrained('clientes');
             $table->timestamps();
         });
     }

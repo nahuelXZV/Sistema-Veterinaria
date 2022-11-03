@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('mascota_vacunas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mascota_id')->onDelete('cascade')->constrained('mascotas');
-            $table->foreignId('vacuna_id')->onDelete('cascade')->constrained('vacunas');
             $table->date('fecha');
             $table->string('observacion')->nullable();
+            $table->foreignId('mascota_id')->onDelete('cascade')->constrained('mascotas');
+            $table->foreignId('vacuna_id')->onDelete('cascade')->constrained('vacunas');
             $table->timestamps();
         });
     }

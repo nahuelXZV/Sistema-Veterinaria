@@ -20,7 +20,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('recibo_id')->nullable();
             $table->foreign('recibo_id')->references('id')->on('recibos')->nullOnDelete();
-            $table->foreignId('producto_id')->nullable()->constrained('productos')->nullOnDelete();
+            $table->unsignedBigInteger('producto_id')->nullable();
+            $table->foreign('producto_id')->references('id')->on('productos')->nullOnDelete();
 
             $table->timestamps();
         });

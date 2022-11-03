@@ -19,7 +19,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('servicio_id')->nullable();
             $table->foreign('servicio_id')->references('id')->on('servicios')->nullOnDelete();
-            $table->foreignId('recibo_id')->nullable()->onDelete('cascade')->constrained('recibos');
+            $table->unsignedBigInteger('recibo_id')->nullable();
+            $table->foreign('recibo_id')->references('id')->on('recibos')->nullOnDelete();
             $table->timestamps();
         });
     }

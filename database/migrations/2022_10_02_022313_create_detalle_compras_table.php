@@ -18,8 +18,12 @@ return new class extends Migration
             $table->double('precio');
             $table->integer('cantidad');
 
-            $table->foreignId('producto_id')->nullable()->constrained('productos')->nullOnDelete();
-            $table->foreignId('nota_compra_id')->onDelete('cascade')->constrained('nota_compras');
+            $table->unsignedBigInteger('nota_compra_id')->nullable();
+            $table->foreign('nota_compra_id')->references('id')->on('nota_compras')->nullOnDelete();
+            $table->unsignedBigInteger('producto_id')->nullable();
+            $table->foreign('producto_id')->references('id')->on('productos')->nullOnDelete();
+            // $table->foreignId('producto_id')->nullable()->constrained('productos')->nullOnDelete();
+            // $table->foreignId('nota_compra_id')->onDelete('cascade')->constrained('nota_compras');
             $table->timestamps();
         });
     }
