@@ -146,7 +146,8 @@
                                 {{ $producto['cantidad'] }}
                             </td>
                             <td class="px-6 py-2 whitespace-nowrap flex">
-                                <x-jet-button wire:click="delLista({{ $producto['id'] }})">
+                                <x-jet-button
+                                    wire:click="delLista('{{ $producto['id'] }}', {{ $producto['id_detalle'] }})">
                                     <x-delete />
                                 </x-jet-button>
                             </td>

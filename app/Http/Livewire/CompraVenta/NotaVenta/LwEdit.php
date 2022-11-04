@@ -28,12 +28,14 @@ class LwEdit extends Component
         foreach ($this->nota_venta->detalle_nota_ventas as $key => $value) {
             array_push($this->lista_productos, [
                 'id_detalle' => $value->id,
-                'id' => $value->producto->id,
-                'nombre' => $value->producto->nombre,
+                'id' => $value->producto ? $value->producto->id : "N/A",
+                'nombre' => $value->producto ? $value->producto->nombre : "N/A",
                 'cantidad' => $value->cantidad,
                 'precio' => $value->precio,
             ]);
-            array_push($this->lista_productos_id, $value->producto->id);
+            if ($value->producto) {
+                array_push($this->lista_productos_id, $value->producto->id);
+            }
         }
         $this->producto['producto_id'] = null;
         $this->producto['max_cantidad'] = 0;
@@ -56,8 +58,10 @@ class LwEdit extends Component
         // eliminar los detalles anteriores
         foreach ($this->nota_venta->detalle_nota_ventas as $key => $value) {
             $prod = Producto::find($value->producto_id);
-            $prod->cantidad = $prod->cantidad + $value->cantidad;
-            $prod->save();
+            if ($prod) {
+                $prod->cantidad = $prod->cantidad + $value->cantidad;
+                $prod->save();
+            }
             $value->delete();
         }
 
@@ -77,13 +81,22 @@ class LwEdit extends Component
         return redirect()->route('nota_venta.index');
     }
 
-    public function delLista($id)
+    public function delLista($id, $detalle)
     {
-        foreach ($this->lista_productos as $key => $producto) {
-            if ($producto['id'] == $id) {
-                unset($this->lista_productos[$key]);
-                unset($this->lista_productos_id[$key]);
-                $this->getTotal();
+        if ($id == "N/A") {
+            foreach ($this->lista_productos as $key => $producto) {
+                if ($producto['id_detalle'] == $detalle) {
+                    unset($this->lista_productos[$key]);
+                    $this->getTotal();
+                }
+            }
+        } else {
+            foreach ($this->lista_productos as $key => $producto) {
+                if ($producto['id'] == $id) {
+                    unset($this->lista_productos[$key]);
+                    unset($this->lista_productos_id[$key]);
+                    $this->getTotal();
+                }
             }
         }
     }
@@ -102,6 +115,7 @@ class LwEdit extends Component
         ]);
         $prod = Producto::find($this->producto['producto_id']);
         array_push($this->lista_productos, [
+            'id_detalle' => -1,
             'id' => $this->producto['producto_id'],
             'nombre' => $prod->nombre,
             'cantidad' => $this->producto['cantidad'],
@@ -122,6 +136,7 @@ class LwEdit extends Component
         }
         $this->header['monto_total'] = $total;
     }
+
     public function render()
     {
         if ($this->producto['producto_id'] != null) {
