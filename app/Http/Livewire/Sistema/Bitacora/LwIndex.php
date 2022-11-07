@@ -25,7 +25,7 @@ class LwIndex extends Component
             ->orWhere('bitacoras.tabla', 'ILIKE', '%' . $this->attribute . '%')
             ->orWhere('users.name', 'ILIKE', '%' . $this->attribute . '%')
             ->orderBy('bitacoras.id', 'desc')
-            ->paginate(20);
+            ->paginate(30);
         return view('livewire.sistema.bitacora.lw-index', compact('bitacoras'));
     }
 }

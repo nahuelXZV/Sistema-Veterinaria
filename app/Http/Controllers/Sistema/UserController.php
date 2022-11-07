@@ -44,7 +44,7 @@ class UserController extends Controller
         ]);
         $user->assignRole($request->role);
 
-        Bitacora::Bitacora('C', 'usuarios', $user->id);
+        Bitacora::Bitacora('C', 'Usuario', $user->id);
         return redirect()->route('usuario.index');
     }
 
@@ -79,7 +79,7 @@ class UserController extends Controller
             $user->syncRoles($request->role);
         }
 
-        Bitacora::Bitacora('U', 'usuarios', $user->id);
+        Bitacora::Bitacora('U', 'Usuario', $user->id);
         return redirect()->route('usuario.index');
     }
 
@@ -87,7 +87,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        Bitacora::Bitacora('D', 'usuarios', $user->id);
+        Bitacora::Bitacora('D', 'Usuario', $user->id);
         return redirect()->route('usuario.index');
     }
 }
