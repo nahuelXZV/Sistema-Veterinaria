@@ -47,17 +47,20 @@
                     value="{{ $producto->cantidad }}" readonly />
             </div>
         </div>
-        <div class="flex items-center">
 
-            <div class="flex-1 px-6 py-4 flex items-center">
-                <x-jet-label class="w-32" for="nombre" value="{{ __('Fecha vencimiento') }}" />
-                <x-jet-input class="flex-1 rounded-md shadow-sm" type="text" name="fecha_nacimiento"
-                    id="fecha_nacimiento" value="{{ $producto->fecha_vencimiento }}" readonly />
-            </div>
-            <div class="flex-1 px-6 py-4 flex items-center">
+        @if ($producto->fecha_vencimiento)
+            <div class="flex items-center">
 
+                <div class="flex-1 px-6 py-4 flex items-center">
+                    <x-jet-label class="w-32" for="nombre" value="{{ __('Fecha vencimiento') }}" />
+                    <x-jet-input class="flex-1 rounded-md shadow-sm" type="text" name="fecha_nacimiento"
+                        id="fecha_nacimiento" value="{{ $producto->fecha_vencimiento }}" readonly />
+                </div>
+                <div class="flex-1 px-6 py-4 flex items-center">
+
+                </div>
             </div>
-        </div>
+        @endif
 
         @if ($producto->descripcion)
             <div class="px-6 py-4 items-center">

@@ -36,7 +36,12 @@
                                     <input type="radio" name="tipo" value="Medico"
                                         {{ $producto->tipo == 'Medico' ? 'checked' : '' }}
                                         class="form-radio h-5 w-5 text-[#6A64F1] focus:ring-[#6A64F1] border-gray-300 rounded">
-                                    <span class="ml-2 text-gray-700">Medico</span>
+                                    <span class="ml-2 text-gray-700 mr-4">Medico</span>
+
+                                    <input type="radio" name="tipo" value="Accesorio"
+                                        {{ $producto->tipo == 'Accesorio' ? 'checked' : '' }}
+                                        class="form-radio h-5 w-5 text-[#6A64F1] focus:ring-[#6A64F1] border-gray-300 rounded">
+                                    <span class="ml-2 text-gray-700">Accesorio</span>
                                 </div>
                                 @error('tipo')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -77,7 +82,7 @@
                         <div class="w-full px-3 sm:w-1/2">
                             <div class="mb-5">
                                 <x-label-input>
-                                    Fecha Vencimiento*
+                                    Fecha Vencimiento
                                 </x-label-input>
                                 <input type="date" name="fecha_vencimiento"
                                     value="{{ $producto->fecha_vencimiento }}"

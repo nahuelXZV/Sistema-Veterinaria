@@ -23,18 +23,16 @@ class ProductoController extends Controller
     {
         $request->validate([
             'nombre' => 'required',
-            'precio' => 'required',
+            'precio' => 'required|numeric',
             'tipo' => 'required',
             'cantidad' => 'required|numeric',
-            'fecha_vencimiento' => 'required|date',
         ], [
             'nombre.required' => 'El campo nombre es obligatorio',
             'precio.required' => 'El campo precio es obligatorio',
+            'precio.numeric' => 'El campo precio debe ser un número, no se aceptan comas',
             'tipo.required' => 'El campo tipo es obligatorio',
             'cantidad.required' => 'El campo cantidad es obligatorio',
             'cantidad.numeric' => 'El campo cantidad debe ser un número',
-            'fecha_vencimiento.required' => 'El campo fecha de vencimiento es obligatorio',
-            'fecha_vencimiento.date' => 'El campo fecha de vencimiento debe ser una fecha',
         ]);
 
         $producto = Producto::create($request->all());
@@ -55,16 +53,13 @@ class ProductoController extends Controller
             'precio' => 'required|numeric',
             'tipo' => 'required',
             'cantidad' => 'required|numeric',
-            'fecha_vencimiento' => 'required|date',
         ], [
             'nombre.required' => 'El campo nombre es obligatorio',
             'precio.required' => 'El campo precio es obligatorio',
-            'precio.numeric' => 'El campo precio debe ser un número',
+            'precio.numeric' => 'El campo precio debe ser un número, no se aceptan comas',
             'tipo.required' => 'El campo tipo es obligatorio',
             'cantidad.required' => 'El campo cantidad es obligatorio',
             'cantidad.numeric' => 'El campo cantidad debe ser un número',
-            'fecha_vencimiento.required' => 'El campo fecha de vencimiento es obligatorio',
-            'fecha_vencimiento.date' => 'El campo fecha de vencimiento debe ser una fecha',
         ]);
         $producto = Producto::find($id);
         $producto->update($request->all());

@@ -22,7 +22,7 @@
                             Código
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
-                            Nombre
+                            Empresa
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
                             Correo
@@ -32,9 +32,6 @@
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
                             Direccion
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
-                            Encargado
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
                             Tipo
@@ -52,6 +49,10 @@
                             </td>
                             <td class="px-6 py-2 text-sm text-gray-900 font-bold">
                                 {{ $proveedor->nombre ? $proveedor->nombre : 'N/A' }}
+                                {{-- texto pequeño --}}
+                                <p class="text-xs text-gray-500 py-1">
+                                    {{ $proveedor->encargado ? 'Enc: ' . $proveedor->encargado : 'N/A' }}
+                                </p>
                             </td>
                             <td class="px-6 py-2 text-sm">
                                 {{ $proveedor->correo ? $proveedor->correo : 'N/A' }}
@@ -63,12 +64,9 @@
                                 {{ $proveedor->direccion ? $proveedor->direccion : 'N/A' }}
                             </td>
                             <td class="px-6 py-2 text-sm">
-                                {{ $proveedor->encargado ? $proveedor->encargado : 'N/A' }}
-                            </td>
-                            <td class="px-6 py-2 text-sm">
                                 {{ $proveedor->tipo ? $proveedor->tipo : 'N/A' }}
                             </td>
-                            <td class="px-6 py-2 whitespace-nowrap flex">
+                            <td class="px-6 py-4 whitespace-nowrap flex">
                                 <a href="{{ route('proveedor.edit', $proveedor->id) }}"
                                     class='mr-1 px-2 py-1 inline-flex items-center  bg-blue-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-600 active:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-300 disabled:opacity-25 transition'>
                                     <x-edit />

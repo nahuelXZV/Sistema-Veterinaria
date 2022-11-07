@@ -105,13 +105,15 @@ class LwEdit extends Component
     {
         $this->validate([
             'producto.producto_id' => 'required',
-            'producto.cantidad' => 'required|max:' . $this->producto['max_cantidad'],
-            'producto.precio' => 'required',
+            'producto.cantidad' => 'required|numeric|lte:' . $this->producto['max_cantidad'],
+            'producto.precio' => 'required|numeric',
         ], [
             'producto.producto_id.required' => 'El campo producto es obligatorio',
             'producto.cantidad.required' => 'El campo cantidad es obligatorio',
-            'producto.cantidad.max' => 'La cantidad no puede ser mayor a ' . $this->producto['max_cantidad'],
+            'producto.cantidad.numeric' => 'El campo cantidad debe ser un número',
+            'producto.cantidad.lte' => 'La cantidad no puede ser mayor a ' . $this->producto['max_cantidad'],
             'producto.precio.required' => 'El campo precio es obligatorio',
+            'producto.precio.numeric' => 'El campo precio debe ser un número',
         ]);
         $prod = Producto::find($this->producto['producto_id']);
         array_push($this->lista_productos, [
