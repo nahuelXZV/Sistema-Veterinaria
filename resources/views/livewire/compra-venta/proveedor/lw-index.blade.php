@@ -25,16 +25,13 @@
                             Empresa
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
-                            Correo
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
-                            Telefono
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
-                            Direccion
+                            Contacto
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
                             Tipo
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
+                            Dirección
                         </th>
                         <th scope="col" class="w-20 px-6 py-4 text-xs font-bold uppercase tracking-wider">
                             Acciones
@@ -56,15 +53,15 @@
                             </td>
                             <td class="px-6 py-2 text-sm">
                                 {{ $proveedor->correo ? $proveedor->correo : 'N/A' }}
-                            </td>
-                            <td class="px-6 py-2 text-sm">
-                                {{ $proveedor->telefono ? $proveedor->telefono : 'N/A' }}
-                            </td>
-                            <td class="px-6 py-2 text-sm">
-                                {{ $proveedor->direccion ? $proveedor->direccion : 'N/A' }}
+                                <p class="text-xs text-gray-500 py-1">
+                                    {{ $proveedor->telefono ? 'Tel: ' . $proveedor->telefono : 'N/A' }}
+                                </p>
                             </td>
                             <td class="px-6 py-2 text-sm">
                                 {{ $proveedor->tipo ? $proveedor->tipo : 'N/A' }}
+                            </td>
+                            <td class="px-6 py-2 text-sm">
+                                {{ $proveedor->direccion ? $proveedor->direccion : 'N/A' }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap flex">
                                 <a href="{{ route('proveedor.edit', $proveedor->id) }}"
