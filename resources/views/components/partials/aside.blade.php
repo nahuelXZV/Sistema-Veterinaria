@@ -139,7 +139,7 @@
                          </a>
                      @endcan
 
-                     {{-- @can('reserva.index')
+                     @can('reserva.index')
                          <a class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 @if (request()->routeIs('reserva.index')) bg-sky-800 @endif "
                              :class="{ 'justify-center': !isSidebarOpen }" href="{{ route('reserva.index') }}">
                              <span>
@@ -181,7 +181,7 @@
                              </span>
                              <span :class="{ 'lg:hidden': !isSidebarOpen }">Vacunas</span>
                          </a>
-                     @endcan --}}
+                     @endcan
 
                      @can('servicio.index')
                          <a class="flex items-center p-2 space-x-2 rounded-md hover:bg-sky-600 @if (request()->routeIs('servicio.index')) bg-sky-800 @endif "
